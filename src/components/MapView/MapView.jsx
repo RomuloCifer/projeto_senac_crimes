@@ -1,7 +1,8 @@
-import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, useMap } from 'react-leaflet';
 import { useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { getCategoryMeta } from '../../utils/categoryStyles';
+import MapFloatingCard from '../MapFloatingCard/MapFloatingCard';
 
 // Centraliza o mapa no caso selecionado
 function FlyToSelected({ cases, selectedCaseId }) {
@@ -16,11 +17,13 @@ function FlyToSelected({ cases, selectedCaseId }) {
 }
 
 export default function MapView({ cases, selectedCaseId, onSelectCase, onStreetView }) {
+  const activeCase = cases.find((c) => c.id === selectedCaseId) ?? null;
+
   return (
     <section className="map-panel">
       <div className="map-title-row">
         <h2>Mapa Interativo</h2>
-        <p>Brasil — mapa real &bull; clique num pin para Street View</p>
+        <p>Brasil — clique num pin para ver o caso</p>
       </div>
 
       <div className="map-surface leaflet-wrap">
@@ -33,7 +36,6 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onStreetV
           style={{ height: '560px', width: '100%', borderRadius: '16px' }}
           scrollWheelZoom
         >
-          {/* Tiles escuros CartoDB — combina com o tema do projeto */}
           <TileLayer
             attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -56,23 +58,17 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onStreetV
                   weight: isActive ? 3 : 2,
                 }}
                 eventHandlers={{ click: () => onSelectCase(item) }}
-              >
-                <Popup className="dark-popup">
-                  <div className="leaflet-popup-inner">
-                    <strong>{item.title}</strong>
-                    <span>{item.city}, {item.state} &mdash; {item.year}</span>
-                    <button
-                      className="streetview-btn"
-                      onClick={() => onStreetView(item)}
-                    >
-                      📍 Ver no Street View
-                    </button>
-                  </div>
-                </Popup>
-              </CircleMarker>
+              />
             );
           })}
         </MapContainer>
+
+        {/* Card flutuante que aparece ao clicar num pin */}
+        <MapFloatingCard
+          item={activeCase}
+          onClose={() => onSelectCase(null)}
+          onStreetView={onStreetView}
+        />
       </div>
     </section>
   );

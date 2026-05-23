@@ -166,7 +166,176 @@
   height: 560px;
   border-radius: 16px;
   border: 1px solid #2b3f58;
-  overflow: hidden;
+  overflow: visible;
+}
+
+/* ── Card flutuante assombrado ─────────────────────────────── */
+.floating-card {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  width: 300px;
+  background: linear-gradient(145deg, #09030f 0%, #12062a 60%, #0e0318 100%);
+  border: 1px solid rgba(150, 60, 255, 0.45);
+  border-radius: 18px;
+  padding: 20px 20px 16px;
+  box-shadow:
+    0 0 0 1px rgba(150, 60, 255, 0.1),
+    0 12px 40px rgba(0, 0, 0, 0.85),
+    0 0 55px rgba(110, 20, 200, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  animation: card-rise 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  pointer-events: auto;
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Brilho decorativo roxo no topo do card */
+.floating-card-glow {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 60px;
+  background: radial-gradient(ellipse, rgba(130, 40, 255, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(8px);
+}
+
+/* Botão fechar */
+.floating-card-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: 1px solid rgba(150, 60, 255, 0.3);
+  color: #9b72cf;
+  border-radius: 8px;
+  width: 26px;
+  height: 26px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.floating-card-close:hover {
+  background: rgba(150, 60, 255, 0.15);
+  color: #e0c8ff;
+  border-color: rgba(150, 60, 255, 0.7);
+}
+
+/* Tag de categoria */
+.floating-card-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b47fff;
+  border: 1px solid rgba(150, 60, 255, 0.4);
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-bottom: 10px;
+}
+
+/* Título com neon sutil */
+.floating-card-title {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: #f0e6ff;
+  text-shadow:
+    0 0 12px rgba(180, 100, 255, 0.6),
+    0 0 30px rgba(130, 40, 255, 0.25);
+  line-height: 1.3;
+  padding-right: 20px;
+}
+
+/* Local + ano */
+.floating-card-location {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  color: #7a6a99;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.floating-card-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8b3fff;
+  box-shadow: 0 0 6px rgba(139, 63, 255, 0.9);
+  flex-shrink: 0;
+}
+
+/* Descrição */
+.floating-card-desc {
+  margin: 0 0 16px;
+  font-size: 0.82rem;
+  color: #b0a0c8;
+  line-height: 1.55;
+  border-left: 2px solid rgba(150, 60, 255, 0.35);
+  padding-left: 10px;
+}
+
+/* Botões */
+.floating-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.floating-card-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  letter-spacing: 0.02em;
+}
+
+.floating-card-btn.outline {
+  background: transparent;
+  border: 1px solid rgba(150, 60, 255, 0.5);
+  color: #c08eff;
+}
+
+.floating-card-btn.outline:hover {
+  background: rgba(150, 60, 255, 0.12);
+  border-color: rgba(180, 100, 255, 0.8);
+  color: #e0c8ff;
+  box-shadow: 0 0 12px rgba(150, 60, 255, 0.25);
+}
+
+.floating-card-btn.filled {
+  background: linear-gradient(135deg, #6b20c8 0%, #8b3fff 100%);
+  border: 1px solid rgba(180, 100, 255, 0.4);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(100, 30, 200, 0.4);
+}
+
+.floating-card-btn.filled:hover {
+  background: linear-gradient(135deg, #7a28e0 0%, #9a50ff 100%);
+  box-shadow: 0 4px 20px rgba(140, 60, 255, 0.6);
+  transform: translateY(-1px);
 }
 
 /* Leaflet container precisa de altura explícita em todos os níveis */
