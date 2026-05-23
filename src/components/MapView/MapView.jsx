@@ -20,6 +20,7 @@ function FlyToSelected({ cases, selectedCaseId }) {
 
 export default function MapView({ cases, allCases, selectedCaseId, onSelectCase, onStreetView, isImmersive, onToggleImmersive, filters, activeFilter, onFilterChange, categoryCounts }) {
   const activeCase = cases.find((c) => c.id === selectedCaseId) ?? null;
+  const mapHeight = isImmersive ? 'calc(100vh - 16px)' : '540px';
 
   return (
     <section className={`map-panel${isImmersive ? ' immersive' : ''}`}>
@@ -37,8 +38,8 @@ export default function MapView({ cases, allCases, selectedCaseId, onSelectCase,
           minZoom={4}
           maxBounds={[[-34.0, -74.0], [5.5, -32.0]]}
           maxBoundsViscosity={1.0}
-          style={{ height: isImmersive ? 'calc(100vh - 16px)' : '540px', width: '100%', borderRadius: 'inherit' }}
-          scrollWheelZoom
+          style={{ height: mapHeight, width: '100%', borderRadius: 'inherit' }}
+          scrollWheelZoom={isImmersive}
         >
           <TileLayer
             attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

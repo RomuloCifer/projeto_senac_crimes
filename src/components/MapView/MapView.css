@@ -92,6 +92,38 @@
   color: var(--accent);
 }
 
+.leaflet-wrap .leaflet-control-zoom {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+}
+
+.leaflet-wrap .leaflet-control-zoom a {
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  background: rgba(22, 22, 29, 0.92);
+  color: var(--text);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.leaflet-wrap .leaflet-control-zoom a:last-child {
+  border-bottom: none;
+}
+
+.leaflet-wrap .leaflet-control-zoom a:hover,
+.leaflet-wrap .leaflet-control-zoom a:focus {
+  background: rgba(124, 140, 255, 0.16);
+  color: var(--accent);
+}
+
+.leaflet-wrap .leaflet-control-zoom a.leaflet-disabled {
+  background: rgba(22, 22, 29, 0.92);
+  color: var(--muted);
+}
+
 @media (max-width: 1000px) {
   .map-surface {
     height: 380px;
