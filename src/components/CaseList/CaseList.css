@@ -1,81 +1,98 @@
 .case-list-panel {
+  margin-top: 12px;
   background: var(--bg-elev);
   border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 16px;
+  border-radius: 12px;
+  padding: 12px 16px;
 }
 
 .case-list-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .case-list-header h2 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'Work Sans', sans-serif;
 }
 
 .case-list-header p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 
+/* Barra horizontal com scroll */
 .case-list {
   list-style: none;
-  margin: 12px 0 0;
-  padding: 0;
-  display: grid;
-  gap: 5px;
-  max-height: 520px;
-  overflow: auto;
+  margin: 0;
+  padding: 0 0 4px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+.case-list::-webkit-scrollbar {
+  height: 3px;
+}
+
+.case-list::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 2px;
+}
+
+.case-list li {
+  flex-shrink: 0;
 }
 
 .case-list-item {
-  width: 100%;
-  text-align: left;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  padding: 10px 12px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  padding: 7px 12px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
   cursor: pointer;
   color: var(--text);
-  transition: all 180ms ease;
+  white-space: nowrap;
+  transition: all 160ms ease;
+  font-size: 0.82rem;
 }
 
 .case-list-item:hover {
   background: rgba(255, 255, 255, 0.04);
-  border-color: var(--line);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .case-list-item.active {
   background: rgba(124, 140, 255, 0.08);
-  border-color: rgba(124, 140, 255, 0.28);
+  border-color: rgba(124, 140, 255, 0.3);
+  color: var(--accent);
 }
 
 .category-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
-.item-main {
-  display: grid;
-  gap: 2px;
-}
-
 .item-main strong {
-  font-size: 0.87rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 500;
 }
 
+/* Oculta cidade/ano na barra compacta */
 .item-main small {
-  color: var(--muted);
-  font-size: 0.75rem;
+  display: none;
 }

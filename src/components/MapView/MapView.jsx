@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { getCategoryMeta } from '../../utils/categoryStyles';
 import MapFloatingCard from '../MapFloatingCard/MapFloatingCard';
+import MapFilter from '../MapFilter/MapFilter';
 import './MapView.css';
 
 // Centraliza o mapa no caso selecionado
@@ -17,15 +18,17 @@ function FlyToSelected({ cases, selectedCaseId }) {
   return null;
 }
 
-export default function MapView({ cases, selectedCaseId, onSelectCase, onStreetView }) {
+export default function MapView({ cases, allCases, selectedCaseId, onSelectCase, onStreetView, isImmersive, onToggleImmersive, filters, activeFilter, onFilterChange, categoryCounts }) {
   const activeCase = cases.find((c) => c.id === selectedCaseId) ?? null;
 
   return (
-    <section className="map-panel">
-      <div className="map-title-row">
-        <h2>Mapa Interativo</h2>
-        <p>Brasil — clique num pin para ver o caso</p>
-      </div>
+    <section className={`map-panel${isImmersive ? ' immersive' : ''}`}>
+      {!isImmersive && (
+        <div className="map-title-row">
+          <h2>Mapa Interativo</h2>
+          <p>Brasil — clique num pin para ver o caso</p>
+        </div>
+      )}
 
       <div className="map-surface leaflet-wrap">
         <MapContainer
@@ -34,7 +37,7 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onStreetV
           minZoom={4}
           maxBounds={[[-34.0, -74.0], [5.5, -32.0]]}
           maxBoundsViscosity={1.0}
-          style={{ height: '560px', width: '100%', borderRadius: '16px' }}
+          style={{ height: isImmersive ? 'calc(100vh - 16px)' : '540px', width: '100%', borderRadius: 'inherit' }}
           scrollWheelZoom
         >
           <TileLayer
@@ -64,7 +67,19 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onStreetV
           })}
         </MapContainer>
 
-        {/* Card flutuante que aparece ao clicar num pin */}
+        {isImmersive && (
+          <button className="immersive-exit-btn" onClick={onToggleImmersive}>
+            ✕ Sair
+          </button>
+        )}
+
+        <MapFilter
+          filters={filters}
+          activeFilter={activeFilter}
+          onChange={onFilterChange}
+          counts={categoryCounts}
+        />
+
         <MapFloatingCard
           item={activeCase}
           onClose={() => onSelectCase(null)}

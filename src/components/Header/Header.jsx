@@ -10,7 +10,7 @@ export default function Header({ isImmersive, onToggleImmersive }) {
       </div>
 
       <button className="ghost-button" type="button" onClick={onToggleImmersive}>
-        {isImmersive ? 'Desativar imersao' : 'Ativar imersao'}
+        {isImmersive ? '↙ Reduzir mapa' : '⛶ Expandir mapa'}
       </button>
     </header>
   );

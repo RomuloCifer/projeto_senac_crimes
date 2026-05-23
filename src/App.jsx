@@ -2,11 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import MapView from './components/MapView/MapView';
-import CategoryFilters from './components/CategoryFilters/CategoryFilters';
 import CaseList from './components/CaseList/CaseList';
 import CaseModal from './components/CaseModal/CaseModal';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
-import AboutSection from './components/AboutSection/AboutSection';
 import StreetViewModal from './components/StreetViewModal/StreetViewModal';
 import { CASES } from './data/cases';
 import { FILTERS } from './utils/categoryStyles';
@@ -29,7 +27,7 @@ export default function App() {
   const [streetViewCase, setStreetViewCase] = useState(null);
   const [showLanding, setShowLanding] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [isImmersive, setIsImmersive] = useState(true);
+  const [isImmersive, setIsImmersive] = useState(false);
 
   const categoryCounts = useMemo(() => buildCategoryCounts(CASES), []);
 
@@ -59,7 +57,7 @@ export default function App() {
   };
 
   return (
-    <div className={`app-shell ${isImmersive ? 'immersive' : ''}`}>
+    <div className="app-shell">
       {showLanding ? (
         isLoading ? (
           <LoadingScreen />
@@ -73,29 +71,25 @@ export default function App() {
             onToggleImmersive={() => setIsImmersive((current) => !current)}
           />
 
-          <CategoryFilters
+          <MapView
+            cases={visibleCases}
+            selectedCaseId={selectedCase?.id}
+            onSelectCase={setSelectedCase}
+            onStreetView={setStreetViewCase}
+            isImmersive={isImmersive}
+            onToggleImmersive={() => setIsImmersive((current) => !current)}
             filters={FILTERS}
             activeFilter={activeFilter}
-            onChange={handleFilterChange}
-            counts={categoryCounts}
+            onFilterChange={handleFilterChange}
+            categoryCounts={categoryCounts}
           />
 
-          <main className="main-layout">
-            <MapView
-              cases={visibleCases}
-              selectedCaseId={selectedCase?.id}
-              onSelectCase={setSelectedCase}
-              onStreetView={setStreetViewCase}
-            />
+          <CaseList
+            cases={visibleCases}
+            selectedCaseId={selectedCase?.id}
+            onSelectCase={setSelectedCase}
+          />
 
-            <CaseList
-              cases={visibleCases}
-              selectedCaseId={selectedCase?.id}
-              onSelectCase={setSelectedCase}
-            />
-          </main>
-
-          <AboutSection />
           <CaseModal item={selectedCase} onClose={() => setSelectedCase(null)} />
           <StreetViewModal caseItem={streetViewCase} onClose={() => setStreetViewCase(null)} />
         </>

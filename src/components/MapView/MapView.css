@@ -27,30 +27,77 @@
 
 .map-surface {
   position: relative;
-  height: 560px;
+  height: 540px;
   border-radius: 12px;
   border: 1px solid var(--line);
   overflow: visible;
 }
 
-/* Leaflet precisa de altura explícita em todos os níveis */
+/* Leaflet precisa de altura explícita */
 .leaflet-wrap {
   height: 100%;
   width: 100%;
 }
 
 .leaflet-wrap .leaflet-container {
-  height: 560px;
+  height: 540px;
   width: 100%;
   border-radius: 12px;
 }
 
+/* ── Modo imersivo — mapa ocupa a tela toda ──────────────────── */
+.map-panel.immersive {
+  position: fixed;
+  inset: 0;
+  z-index: 8000;
+  border-radius: 0;
+  border: none;
+  padding: 8px;
+  background: #000;
+}
+
+.map-panel.immersive .map-surface {
+  height: calc(100vh - 16px);
+  border-radius: 10px;
+  border-color: var(--line);
+}
+
+.map-panel.immersive .leaflet-wrap .leaflet-container {
+  height: calc(100vh - 16px);
+  border-radius: 10px;
+}
+
+/* Botão de saída do modo imersivo — canto superior esquerdo */
+.immersive-exit-btn {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 9001;
+  background: rgba(22, 22, 29, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: all 0.15s;
+}
+
+.immersive-exit-btn:hover {
+  background: rgba(124, 140, 255, 0.15);
+  border-color: rgba(124, 140, 255, 0.4);
+  color: var(--accent);
+}
+
 @media (max-width: 1000px) {
   .map-surface {
-    height: 420px;
+    height: 380px;
   }
 
   .leaflet-wrap .leaflet-container {
-    height: 420px;
+    height: 380px;
   }
 }

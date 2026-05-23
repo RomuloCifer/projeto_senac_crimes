@@ -1,19 +1,19 @@
 export const CATEGORY_META = {
   crime: {
     label: 'Crime',
-    color: '#8B0000',
+    color: '#C0392B',   // vermelho profundo
   },
   lenda: {
     label: 'Lenda',
-    color: '#7D4EFF',
+    color: '#8C6BE8',   // roxo suave
   },
   assombracao: {
     label: 'Assombração',
-    color: '#7C8CFF',
+    color: '#4A7ABF',   // azul escuro frio
   },
   misterio: {
     label: 'Mistério',
-    color: '#C9A227',
+    color: '#A07840',   // dourado apagado
   },
 };
 
