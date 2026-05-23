@@ -9,8 +9,8 @@ export default function AboutSection() {
         cultural. O foco do MVP e validar navegacao, filtros e exploracao dos casos.
       </p>
       <p>
-        Tecnologias atuais: React + Vite. A proxima etapa integra Leaflet para zoom e navegacao de
-        mapa real.
+        Tecnologias: React + Vite + Leaflet. O mapa interativo permite navegar pelo Brasil e filtrar
+        casos por categoria.
       </p>
       <p>
         Divisao sugerida do grupo: dados e curadoria, desenvolvimento front-end, design de interface e

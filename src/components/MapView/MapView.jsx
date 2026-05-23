@@ -18,7 +18,7 @@ function FlyToSelected({ cases, selectedCaseId }) {
   return null;
 }
 
-export default function MapView({ cases, allCases, selectedCaseId, onSelectCase, onStreetView, isImmersive, onToggleImmersive, filters, activeFilter, onFilterChange, categoryCounts }) {
+export default function MapView({ cases, selectedCaseId, onSelectCase, onInvestigate, onStreetView, isImmersive, onToggleImmersive, filters, activeFilter, onFilterChange, categoryCounts }) {
   const activeCase = cases.find((c) => c.id === selectedCaseId) ?? null;
   const mapHeight = isImmersive ? 'calc(100vh - 16px)' : '540px';
 
@@ -84,8 +84,7 @@ export default function MapView({ cases, allCases, selectedCaseId, onSelectCase,
 
       <MapFloatingCard
         item={activeCase}
-        onClose={() => onSelectCase(null)}
-        onStreetView={onStreetView}
+        onClose={() => onSelectCase(null)}        onInvestigate={onInvestigate}        onStreetView={onStreetView}
         isImmersive={isImmersive}
       />
     </section>

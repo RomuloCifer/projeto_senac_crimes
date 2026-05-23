@@ -1,6 +1,6 @@
 import './MapFloatingCard.css';
 
-export default function MapFloatingCard({ item, onClose, onStreetView, isImmersive = false }) {
+export default function MapFloatingCard({ item, onClose, onInvestigate, onStreetView, isImmersive = false }) {
   if (!item) return null;
 
   return (
@@ -28,7 +28,7 @@ export default function MapFloatingCard({ item, onClose, onStreetView, isImmersi
       <p className="floating-card-desc">{item.description}</p>
 
       <div className="floating-card-actions">
-        <button className="floating-card-btn outline">Investigar</button>
+        <button className="floating-card-btn outline" onClick={() => onInvestigate(item)}>Investigar</button>
         <button className="floating-card-btn filled" onClick={() => onStreetView(item)}>
           📍 Ver no Street View
         </button>

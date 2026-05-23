@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import MapView from './components/MapView/MapView';
 import CaseList from './components/CaseList/CaseList';
+import CaseModal from './components/CaseModal/CaseModal';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 import StreetViewModal from './components/StreetViewModal/StreetViewModal';
 import { CASES } from './data/cases';
@@ -23,6 +24,7 @@ function buildCategoryCounts(items) {
 export default function App() {
   const [activeFilter, setActiveFilter] = useState('todos');
   const [selectedCase, setSelectedCase] = useState(null);
+  const [modalCase, setModalCase] = useState(null);
   const [streetViewCase, setStreetViewCase] = useState(null);
   const [showLanding, setShowLanding] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -74,6 +76,7 @@ export default function App() {
             cases={visibleCases}
             selectedCaseId={selectedCase?.id}
             onSelectCase={setSelectedCase}
+            onInvestigate={setModalCase}
             onStreetView={setStreetViewCase}
             isImmersive={isImmersive}
             onToggleImmersive={() => setIsImmersive((current) => !current)}
@@ -90,6 +93,7 @@ export default function App() {
           />
 
           <StreetViewModal caseItem={streetViewCase} onClose={() => setStreetViewCase(null)} />
+          <CaseModal item={modalCase} onClose={() => setModalCase(null)} />
         </>
       )}
     </div>
