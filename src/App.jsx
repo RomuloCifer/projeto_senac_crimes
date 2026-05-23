@@ -7,6 +7,7 @@ import CaseList from './components/CaseList/CaseList';
 import CaseModal from './components/CaseModal/CaseModal';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 import AboutSection from './components/AboutSection/AboutSection';
+import StreetViewModal from './components/StreetViewModal/StreetViewModal';
 import { CASES } from './data/cases';
 import { FILTERS } from './utils/categoryStyles';
 import './App.css';
@@ -25,6 +26,7 @@ function buildCategoryCounts(items) {
 export default function App() {
   const [activeFilter, setActiveFilter] = useState('todos');
   const [selectedCase, setSelectedCase] = useState(null);
+  const [streetViewCase, setStreetViewCase] = useState(null);
   const [showLanding, setShowLanding] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [isImmersive, setIsImmersive] = useState(true);
@@ -83,6 +85,7 @@ export default function App() {
               cases={visibleCases}
               selectedCaseId={selectedCase?.id}
               onSelectCase={setSelectedCase}
+              onStreetView={setStreetViewCase}
             />
 
             <CaseList
@@ -94,6 +97,7 @@ export default function App() {
 
           <AboutSection />
           <CaseModal item={selectedCase} onClose={() => setSelectedCase(null)} />
+          <StreetViewModal caseItem={streetViewCase} onClose={() => setStreetViewCase(null)} />
         </>
       )}
     </div>

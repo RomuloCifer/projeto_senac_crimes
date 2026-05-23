@@ -1,48 +1,75 @@
+import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet';
+import { useEffect } from 'react';
+import 'leaflet/dist/leaflet.css';
 import { getCategoryMeta } from '../../utils/categoryStyles';
 
-const BRAZIL_BOUNDS = {
-  minLat: -34,
-  maxLat: 6,
-  minLng: -74,
-  maxLng: -32,
-};
-
-function toMapPosition(latitude, longitude) {
-  const x = ((longitude - BRAZIL_BOUNDS.minLng) / (BRAZIL_BOUNDS.maxLng - BRAZIL_BOUNDS.minLng)) * 100;
-  const y = (1 - (latitude - BRAZIL_BOUNDS.minLat) / (BRAZIL_BOUNDS.maxLat - BRAZIL_BOUNDS.minLat)) * 100;
-
-  return {
-    left: `${Math.min(Math.max(x, 3), 97)}%`,
-    top: `${Math.min(Math.max(y, 4), 96)}%`,
-  };
+// Centraliza o mapa no caso selecionado
+function FlyToSelected({ cases, selectedCaseId }) {
+  const map = useMap();
+  useEffect(() => {
+    const found = cases.find((c) => c.id === selectedCaseId);
+    if (found) {
+      map.flyTo([found.latitude, found.longitude], 13, { duration: 1.2 });
+    }
+  }, [selectedCaseId, cases, map]);
+  return null;
 }
 
-export default function MapView({ cases, selectedCaseId, onSelectCase }) {
+export default function MapView({ cases, selectedCaseId, onSelectCase, onStreetView }) {
   return (
     <section className="map-panel">
       <div className="map-title-row">
         <h2>Mapa Interativo</h2>
-        <p>Centro: Brasil (preparado para Leaflet na Parte 2)</p>
+        <p>Brasil — mapa real &bull; clique num pin para Street View</p>
       </div>
 
-      <div className="map-surface" role="application" aria-label="Mapa de casos obscuros do Brasil">
-        <div className="map-grid" />
-        {cases.map((item) => {
-          const meta = getCategoryMeta(item.category);
-          const isActive = selectedCaseId === item.id;
-          return (
-            <button
-              key={item.id}
-              type="button"
-              className={`map-marker ${isActive ? 'active' : ''}`}
-              style={{ ...toMapPosition(item.latitude, item.longitude), '--marker-color': meta.color }}
-              onClick={() => onSelectCase(item)}
-              title={`${item.title} - ${meta.label}`}
-            >
-              <span className="sr-only">Abrir caso {item.title}</span>
-            </button>
-          );
-        })}
+      <div className="map-surface leaflet-wrap">
+        <MapContainer
+          center={[-15.78, -47.93]}
+          zoom={4}
+          style={{ height: '100%', width: '100%', borderRadius: '16px' }}
+          scrollWheelZoom
+        >
+          {/* Tiles escuros CartoDB — combina com o tema do projeto */}
+          <TileLayer
+            attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          />
+
+          <FlyToSelected cases={cases} selectedCaseId={selectedCaseId} />
+
+          {cases.map((item) => {
+            const meta = getCategoryMeta(item.category);
+            const isActive = selectedCaseId === item.id;
+            return (
+              <CircleMarker
+                key={item.id}
+                center={[item.latitude, item.longitude]}
+                radius={isActive ? 13 : 9}
+                pathOptions={{
+                  fillColor: meta.color,
+                  fillOpacity: 0.92,
+                  color: '#ffffff',
+                  weight: isActive ? 3 : 2,
+                }}
+                eventHandlers={{ click: () => onSelectCase(item) }}
+              >
+                <Popup className="dark-popup">
+                  <div className="leaflet-popup-inner">
+                    <strong>{item.title}</strong>
+                    <span>{item.city}, {item.state} &mdash; {item.year}</span>
+                    <button
+                      className="streetview-btn"
+                      onClick={() => onStreetView(item)}
+                    >
+                      📍 Ver no Street View
+                    </button>
+                  </div>
+                </Popup>
+              </CircleMarker>
+            );
+          })}
+        </MapContainer>
       </div>
     </section>
   );
