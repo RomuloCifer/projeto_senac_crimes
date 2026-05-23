@@ -27,6 +27,9 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onStreetV
         <MapContainer
           center={[-15.78, -47.93]}
           zoom={4}
+          minZoom={4}
+          maxBounds={[[-34.0, -74.0], [5.5, -32.0]]}
+          maxBoundsViscosity={1.0}
           style={{ height: '100%', width: '100%', borderRadius: '16px' }}
           scrollWheelZoom
         >
