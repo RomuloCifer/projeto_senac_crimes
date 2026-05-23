@@ -80,13 +80,14 @@ export default function MapView({ cases, allCases, selectedCaseId, onSelectCase,
           onChange={onFilterChange}
           counts={categoryCounts}
         />
-
-        <MapFloatingCard
-          item={activeCase}
-          onClose={() => onSelectCase(null)}
-          onStreetView={onStreetView}
-        />
       </div>
+
+      <MapFloatingCard
+        item={activeCase}
+        onClose={() => onSelectCase(null)}
+        onStreetView={onStreetView}
+        isImmersive={isImmersive}
+      />
     </section>
   );
 }

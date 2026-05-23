@@ -1,10 +1,10 @@
 import './MapFloatingCard.css';
 
-export default function MapFloatingCard({ item, onClose, onStreetView }) {
+export default function MapFloatingCard({ item, onClose, onStreetView, isImmersive = false }) {
   if (!item) return null;
 
   return (
-    <div className="floating-card" role="dialog" aria-label={item.title}>
+    <div className={`floating-card${isImmersive ? ' immersive' : ''}`} role="dialog" aria-label={item.title}>
       {/* Brilho de fundo decorativo */}
       <div className="floating-card-glow" aria-hidden="true" />
 

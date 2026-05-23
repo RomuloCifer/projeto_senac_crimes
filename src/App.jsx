@@ -3,7 +3,6 @@ import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import MapView from './components/MapView/MapView';
 import CaseList from './components/CaseList/CaseList';
-import CaseModal from './components/CaseModal/CaseModal';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 import StreetViewModal from './components/StreetViewModal/StreetViewModal';
 import { CASES } from './data/cases';
@@ -90,7 +89,6 @@ export default function App() {
             onSelectCase={setSelectedCase}
           />
 
-          <CaseModal item={selectedCase} onClose={() => setSelectedCase(null)} />
           <StreetViewModal caseItem={streetViewCase} onClose={() => setStreetViewCase(null)} />
         </>
       )}
