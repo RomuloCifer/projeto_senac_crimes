@@ -6,13 +6,23 @@ import MapFloatingCard from '../MapFloatingCard/MapFloatingCard';
 import MapFilter from '../MapFilter/MapFilter';
 import './MapView.css';
 
-// Centraliza o mapa no caso selecionado
+const BRAZIL_CENTER = [-15.78, -47.93];
+const BRAZIL_ZOOM = 4;
+const CASE_ZOOM = 10;
+
+// Centraliza o mapa no caso selecionado ou volta para o Brasil ao fechar
 function FlyToSelected({ cases, selectedCaseId }) {
   const map = useMap();
   useEffect(() => {
+    if (!selectedCaseId) {
+      map.flyTo(BRAZIL_CENTER, BRAZIL_ZOOM, { duration: 1.4 });
+      return;
+    }
     const found = cases.find((c) => c.id === selectedCaseId);
     if (found) {
-      map.flyTo([found.latitude, found.longitude], 13, { duration: 1.2 });
+      // Offset leve para cima: o pin fica na metade inferior do mapa, não no centro
+      const offsetLat = found.latitude - 0.18;
+      map.flyTo([offsetLat, found.longitude], CASE_ZOOM, { duration: 1.2 });
     }
   }, [selectedCaseId, cases, map]);
   return null;
@@ -33,9 +43,9 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onInvesti
 
       <div className="map-surface leaflet-wrap">
         <MapContainer
-          center={[-15.78, -47.93]}
-          zoom={4}
-          minZoom={4}
+          center={BRAZIL_CENTER}
+          zoom={BRAZIL_ZOOM}
+          minZoom={BRAZIL_ZOOM}
           maxBounds={[[-34.0, -74.0], [5.5, -32.0]]}
           maxBoundsViscosity={1.0}
           style={{ height: mapHeight, width: '100%', borderRadius: 'inherit' }}
