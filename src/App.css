@@ -163,16 +163,20 @@
 .map-surface {
   position: relative;
   margin-top: 12px;
-  height: 480px;
+  height: 560px;
   border-radius: 16px;
   border: 1px solid #2b3f58;
   overflow: hidden;
 }
 
-/* Leaflet container precisa de altura explícita */
-.leaflet-wrap,
-.leaflet-wrap .leaflet-container {
+/* Leaflet container precisa de altura explícita em todos os níveis */
+.leaflet-wrap {
   height: 100%;
+  width: 100%;
+}
+
+.leaflet-wrap .leaflet-container {
+  height: 560px;
   width: 100%;
   border-radius: 16px;
 }
@@ -485,7 +489,11 @@
   }
 
   .map-surface {
-    height: 360px;
+    height: 420px;
+  }
+
+  .leaflet-wrap .leaflet-container {
+    height: 420px;
   }
 }
 

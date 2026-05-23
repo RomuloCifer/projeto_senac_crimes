@@ -1,161 +1,43 @@
 /** @typedef {import('../types/case').MapCase} MapCase */
 
+// =============================================================================
+// CASOS — adicione novos casos aqui seguindo o modelo abaixo.
+//
+// Campos obrigatórios:
+//   id          → string única, ex: 'crime-nome-do-caso'
+//   title       → nome exibido no mapa e na lista
+//   category    → 'crime' | 'lenda' | 'assombracao' | 'misterio'
+//   city        → cidade onde ocorreu
+//   state       → sigla do estado, ex: 'SP'
+//   year        → ano ou período, ex: '1977' ou 'Anos 90'
+//   latitude    → coordenada decimal, ex: -23.5454
+//   longitude   → coordenada decimal, ex: -46.6465
+//   imageUrl    → URL de uma imagem representativa (Unsplash, etc.)
+//   description → texto descritivo do caso
+//   curiosity   → detalhe curioso ou informação extra
+//
+// Dica: use https://www.google.com/maps para obter latitude/longitude.
+//   Clique com botão direito num ponto do mapa → o primeiro item é "lat, lng".
+// =============================================================================
+
 /** @type {MapCase[]} */
 export const CASES = [
-  {
-    id: 'crime-castelinho-apa',
-    title: 'Castelinho da Rua Apa',
-    category: 'crime',
-    city: 'Sao Paulo',
-    state: 'SP',
-    year: '1937',
-    latitude: -23.5454,
-    longitude: -46.6465,
-    imageUrl: 'https://images.unsplash.com/photo-1505635552518-3448ff116af3?q=80&w=800',
-    description: 'Tragedia familiar envolvendo tres mortes em uma mansao que virou simbolo de crime sem solucao definitiva.',
-    curiosity: 'Moradores da regiao dizem ouvir passos no piso superior durante a madrugada.',
-  },
+
+  // ── CASO EXEMPLO — substitua ou mantenha como referência ──────────────────
   {
     id: 'crime-mascaras-chumbo',
-    title: 'Caso das Mascaras de Chumbo',
+    title: 'Caso das Máscaras de Chumbo',
     category: 'crime',
-    city: 'Niteroi',
+    city: 'Niterói',
     state: 'RJ',
     year: '1966',
     latitude: -22.8751,
     longitude: -43.0722,
     imageUrl: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=800',
-    description: 'Dois tecnicos foram encontrados mortos com mascaras de chumbo e bilhetes enigmaticos.',
-    curiosity: 'A investigacao nunca explicou de forma convincente a origem das capsulas citadas no bilhete.',
+    description: 'Dois técnicos foram encontrados mortos no Morro do Vintém com máscaras de chumbo artesanais e um bilhete enigmático com instruções para um "experimento".',
+    curiosity: 'A investigação nunca explicou de forma convincente a origem das cápsulas citadas no bilhete, e o caso permanece oficialmente sem solução.',
   },
-  {
-    id: 'crime-fera-penha',
-    title: 'Fera da Penha',
-    category: 'crime',
-    city: 'Rio de Janeiro',
-    state: 'RJ',
-    year: '1960',
-    latitude: -22.8386,
-    longitude: -43.2836,
-    imageUrl: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=800',
-    description: 'Crime que chocou o Brasil pela brutalidade e pela ampla cobertura nos jornais da epoca.',
-    curiosity: 'O caso influenciou debates sobre seguranca infantil no pais.',
-  },
-  {
-    id: 'lenda-loira-banheiro',
-    title: 'Loira do Banheiro',
-    category: 'lenda',
-    city: 'Cuiaba',
-    state: 'MT',
-    year: 'Seculo XX',
-    latitude: -15.6014,
-    longitude: -56.0979,
-    imageUrl: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800',
-    description: 'Lenda urbana escolar mais famosa do Brasil, repetida em diferentes estados por geracoes.',
-    curiosity: 'Rituais para invocacao mudam de escola para escola, mas sempre envolvem espelho.',
-  },
-  {
-    id: 'lenda-et-varginha',
-    title: 'ET de Varginha',
-    category: 'lenda',
-    city: 'Varginha',
-    state: 'MG',
-    year: '1996',
-    latitude: -21.5514,
-    longitude: -45.4303,
-    imageUrl: 'https://images.unsplash.com/photo-1590487988256-9ed24133863e?q=80&w=800',
-    description: 'Relato de avistamento de criatura que mobilizou militares e gerou teorias ate hoje.',
-    curiosity: 'A cidade abracou o caso e criou monumentos tematicos.',
-  },
-  {
-    id: 'lenda-chupa-cabra',
-    title: 'Chupa-Cabra no Sul',
-    category: 'lenda',
-    city: 'Guaratuba',
-    state: 'PR',
-    year: 'Anos 90',
-    latitude: -25.8772,
-    longitude: -48.5756,
-    imageUrl: 'https://images.unsplash.com/photo-1590487988256-9ed24133863e?q=80&w=800',
-    description: 'Ataques a rebanhos com marcas estranhas e ausencia de sangue alimentaram o panico local.',
-    curiosity: 'Varios laudos divergentes sobre causas das mortes circularam na epoca.',
-  },
-  {
-    id: 'assombracao-joelma',
-    title: 'Edificio Joelma',
-    category: 'assombracao',
-    city: 'Sao Paulo',
-    state: 'SP',
-    year: '1974',
-    latitude: -23.5487,
-    longitude: -46.6369,
-    imageUrl: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=800',
-    description: 'Apos incendio historico, relatos de aparicoes e sons sem explicacao se tornaram frequentes.',
-    curiosity: 'Visitantes citam variacoes abruptas de temperatura em corredores especificos.',
-  },
-  {
-    id: 'assombracao-teatro-amazonas',
-    title: 'Teatro Amazonas',
-    category: 'assombracao',
-    city: 'Manaus',
-    state: 'AM',
-    year: 'Seculo XIX',
-    latitude: -3.1303,
-    longitude: -60.0232,
-    imageUrl: 'https://images.unsplash.com/photo-1460881680858-30d872d5b530?q=80&w=800',
-    description: 'Funcionarios relatam presencas de epoca e sons de instrumentos em horarios sem ensaio.',
-    curiosity: 'Ha historias de camarotes que parecem ocupados quando vistos de relance.',
-  },
-  {
-    id: 'assombracao-mercado-modelo',
-    title: 'Mercado Modelo',
-    category: 'assombracao',
-    city: 'Salvador',
-    state: 'BA',
-    year: 'Seculo XX',
-    latitude: -12.9708,
-    longitude: -38.5124,
-    imageUrl: 'https://images.unsplash.com/photo-1590075865003-e48277afd558?q=80&w=800',
-    description: 'Tuneis antigos e relatos de correntes e vozes reforcam a fama do local.',
-    curiosity: 'Guias contam que o subsolo acumula narrativas diferentes a cada decada.',
-  },
-  {
-    id: 'misterio-operacao-prato',
-    title: 'Operacao Prato',
-    category: 'misterio',
-    city: 'Colares',
-    state: 'PA',
-    year: '1977',
-    latitude: -0.9367,
-    longitude: -48.2808,
-    imageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=800',
-    description: 'Operacao militar para investigar luzes no ceu com impacto na populacao ribeirinha.',
-    curiosity: 'Parte dos documentos oficiais foi liberada apenas anos depois.',
-  },
-  {
-    id: 'misterio-noite-ovnis',
-    title: 'Noite Oficial dos OVNIs',
-    category: 'misterio',
-    city: 'Sao Jose dos Campos',
-    state: 'SP',
-    year: '1986',
-    latitude: -23.2237,
-    longitude: -45.9009,
-    imageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?q=80&w=800',
-    description: 'Objetos nao identificados foram detectados por radares e perseguidos por aeronaves.',
-    curiosity: 'A ocorrencia envolveu comunicacoes de defesa com diferentes regioes do pais.',
-  },
-  {
-    id: 'misterio-ilha-trindade',
-    title: 'Avistamento na Ilha da Trindade',
-    category: 'misterio',
-    city: 'Ilha da Trindade',
-    state: 'ES',
-    year: '1958',
-    latitude: -20.5081,
-    longitude: -29.3124,
-    imageUrl: 'https://images.unsplash.com/photo-1494022299300-899b96e49893?q=80&w=800',
-    description: 'Registro fotografico de objeto voador por equipe da marinha gerou debate tecnico.',
-    curiosity: 'As imagens seguem citadas em discussoes sobre autenticidade fotografica historica.',
-  },
+
+  // ── ADICIONE NOVOS CASOS ABAIXO ────────────────────────────────────────────
+
 ];
