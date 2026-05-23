@@ -29,7 +29,7 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onInvesti
           maxBounds={[[-34.0, -74.0], [5.5, -32.0]]}
           maxBoundsViscosity={1.0}
           style={{ height: mapHeight, width: '100%', borderRadius: 'inherit' }}
-          scrollWheelZoom
+          scrollWheelZoom={isImmersive}
         >
           <TileLayer
             attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
