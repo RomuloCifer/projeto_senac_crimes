@@ -67,11 +67,12 @@
   border-radius: 10px;
 }
 
-/* Botão de saída do modo imersivo — canto superior esquerdo */
+/* Botão de saída do modo imersivo — topo central */
 .immersive-exit-btn {
   position: absolute;
   top: 14px;
-  left: 14px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 9001;
   background: rgba(22, 22, 29, 0.88);
   backdrop-filter: blur(10px);
