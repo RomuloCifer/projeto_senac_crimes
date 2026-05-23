@@ -1,0 +1,41 @@
+.hero-screen {
+  min-height: calc(100vh - 48px);
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.hero-screen h1 {
+  font-size: clamp(2.4rem, 8vw, 4.5rem);
+  margin: 0;
+  color: var(--text);
+}
+
+.hero-copy {
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.primary-button {
+  padding: 12px 32px;
+  font-weight: 700;
+  background: var(--accent);
+  border: none;
+  color: #0B0B0F;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  justify-self: center;
+  transition: all 200ms ease;
+  box-shadow: 0 0 24px rgba(124, 140, 255, 0.35);
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 36px rgba(124, 140, 255, 0.5);
+}

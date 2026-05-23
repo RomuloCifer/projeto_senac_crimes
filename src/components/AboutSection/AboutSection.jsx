@@ -1,3 +1,5 @@
+import './AboutSection.css';
+
 export default function AboutSection() {
   return (
     <section className="about-panel" aria-label="Sobre o projeto">

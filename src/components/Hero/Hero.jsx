@@ -1,3 +1,5 @@
+import './Hero.css';
+
 export default function Hero({ onExplore }) {
   return (
     <section className="hero-screen">

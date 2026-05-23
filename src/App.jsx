@@ -10,7 +10,7 @@ import AboutSection from './components/AboutSection/AboutSection';
 import StreetViewModal from './components/StreetViewModal/StreetViewModal';
 import { CASES } from './data/cases';
 import { FILTERS } from './utils/categoryStyles';
-import './App.css';
+import './AppShell.css';
 
 function buildCategoryCounts(items) {
   return items.reduce(

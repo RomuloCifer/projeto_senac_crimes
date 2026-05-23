@@ -1,0 +1,31 @@
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-chip {
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 180ms ease;
+}
+
+.filter-chip:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+}
+
+.filter-chip.active {
+  border-color: var(--chip-color, var(--accent));
+  color: var(--text);
+  background: color-mix(in srgb, var(--chip-color, var(--accent)) 10%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--chip-color, var(--accent)) 20%, transparent);
+}

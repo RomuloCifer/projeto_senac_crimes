@@ -1,3 +1,5 @@
+import './Header.css';
+
 export default function Header({ isImmersive, onToggleImmersive }) {
   return (
     <header className="app-header">

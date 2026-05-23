@@ -1,33 +1,33 @@
 export const CATEGORY_META = {
   crime: {
-    label: 'Crimes',
-    color: '#f2484b',
+    label: 'Crime',
+    color: '#8B0000',
   },
   lenda: {
-    label: 'Lendas',
-    color: '#7c4dff',
+    label: 'Lenda',
+    color: '#7D4EFF',
   },
   assombracao: {
-    label: 'Assombracoes',
-    color: '#8dd8ff',
+    label: 'Assombração',
+    color: '#7C8CFF',
   },
   misterio: {
-    label: 'Misterios',
-    color: '#ffc947',
+    label: 'Mistério',
+    color: '#C9A227',
   },
 };
 
 export const FILTERS = [
-  { value: 'todos', label: 'Todos' },
-  { value: 'crime', label: 'Crimes' },
-  { value: 'lenda', label: 'Lendas' },
-  { value: 'assombracao', label: 'Assombracoes' },
-  { value: 'misterio', label: 'Misterios' },
+  { value: 'todos',       label: 'Todos' },
+  { value: 'crime',       label: 'Crimes' },
+  { value: 'lenda',       label: 'Lendas' },
+  { value: 'assombracao', label: 'Assombrações' },
+  { value: 'misterio',    label: 'Mistérios' },
 ];
 
 export function getCategoryMeta(category) {
   return CATEGORY_META[category] ?? {
     label: 'Desconhecida',
-    color: '#7a7f92',
+    color: '#9A9AA3',
   };
 }

@@ -1,3 +1,5 @@
+import './StreetViewModal.css';
+
 export default function StreetViewModal({ caseItem, onClose }) {
   if (!caseItem) return null;
 

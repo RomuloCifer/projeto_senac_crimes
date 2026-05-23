@@ -1,3 +1,5 @@
+import './LoadingScreen.css';
+
 export default function LoadingScreen() {
   return (
     <section className="loading-screen" aria-live="polite" aria-busy="true">

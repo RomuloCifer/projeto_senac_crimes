@@ -1,4 +1,5 @@
 import { getCategoryMeta } from '../../utils/categoryStyles';
+import './CaseList.css';
 
 export default function CaseList({ cases, selectedCaseId, onSelectCase }) {
   return (

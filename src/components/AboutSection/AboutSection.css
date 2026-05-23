@@ -1,0 +1,22 @@
+.about-panel {
+  margin-top: 16px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 20px 24px;
+  display: grid;
+  gap: 10px;
+}
+
+.about-panel h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.about-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}

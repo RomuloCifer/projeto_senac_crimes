@@ -1,3 +1,5 @@
+import './MapFloatingCard.css';
+
 export default function MapFloatingCard({ item, onClose, onStreetView }) {
   if (!item) return null;
 

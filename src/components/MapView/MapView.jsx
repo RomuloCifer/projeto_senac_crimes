@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { getCategoryMeta } from '../../utils/categoryStyles';
 import MapFloatingCard from '../MapFloatingCard/MapFloatingCard';
+import './MapView.css';
 
 // Centraliza o mapa no caso selecionado
 function FlyToSelected({ cases, selectedCaseId }) {

@@ -1,7 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Work+Sans:wght@400;500;700;800&display=swap');
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
+}
+
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  --bg:          #0B0B0F;
+  --bg-elev:     #16161D;
+  --text:        #F5F5F5;
+  --muted:       #9A9AA3;
+  --line:        rgba(255, 255, 255, 0.08);
+  --accent:      #7C8CFF;
+  --accent-soft: rgba(124, 140, 255, 0.12);
+  --shadow:      0 20px 40px rgba(0, 0, 0, 0.55);
+  --glow:        0 0 20px rgba(124, 140, 255, 0.25);
+
+  /* Categorias */
+  --cat-crime:       #8B0000;
+  --cat-assombracao: #7C8CFF;
+  --cat-lenda:       #7D4EFF;
+  --cat-misterio:    #C9A227;
 }
 
 html,
@@ -13,16 +32,27 @@ body,
 
 body {
   font-family: 'Work Sans', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
   font-family: 'Special Elite', 'Courier New', monospace;
   letter-spacing: 0.01em;
 }
 
 button {
   font: inherit;
+}
+
+/* Acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

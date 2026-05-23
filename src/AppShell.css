@@ -1,0 +1,26 @@
+/* App shell e layout principal */
+
+.app-shell {
+  min-height: 100vh;
+  padding: 24px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 1000px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 16px;
+  }
+}

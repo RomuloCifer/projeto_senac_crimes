@@ -1,0 +1,81 @@
+.case-list-panel {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.case-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.case-list-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.case-list-header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.case-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 5px;
+  max-height: 520px;
+  overflow: auto;
+}
+
+.case-list-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 180ms ease;
+}
+
+.case-list-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--line);
+}
+
+.case-list-item.active {
+  background: rgba(124, 140, 255, 0.08);
+  border-color: rgba(124, 140, 255, 0.28);
+}
+
+.category-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.item-main {
+  display: grid;
+  gap: 2px;
+}
+
+.item-main strong {
+  font-size: 0.87rem;
+  font-weight: 600;
+}
+
+.item-main small {
+  color: var(--muted);
+  font-size: 0.75rem;
+}

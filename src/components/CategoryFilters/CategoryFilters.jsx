@@ -1,4 +1,5 @@
 import { getCategoryMeta } from '../../utils/categoryStyles';
+import './CategoryFilters.css';
 
 export default function CategoryFilters({ filters, activeFilter, onChange, counts }) {
   return (

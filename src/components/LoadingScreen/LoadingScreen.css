@@ -1,0 +1,29 @@
+.loading-screen {
+  min-height: calc(100vh - 48px);
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.loading-screen p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+}
+
+.loading-ring {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-inline: auto;
+  border: 3px solid rgba(124, 140, 255, 0.12);
+  border-top-color: var(--accent);
+  animation: loading-spin 0.9s linear infinite;
+}
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

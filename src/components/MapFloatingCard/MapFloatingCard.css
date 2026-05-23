@@ -1,0 +1,151 @@
+.floating-card {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  width: 300px;
+  background: rgba(22, 22, 29, 0.94);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(124, 140, 255, 0.16);
+  border-radius: 14px;
+  padding: 18px 18px 14px;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.7),
+    var(--glow);
+  animation: card-rise 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+  pointer-events: auto;
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Reflexo sutil no topo */
+.floating-card-glow {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 36px;
+  background: radial-gradient(ellipse, rgba(124, 140, 255, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(6px);
+}
+
+.floating-card-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.floating-card-close:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+}
+
+.floating-card-tag {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(124, 140, 255, 0.22);
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-bottom: 8px;
+}
+
+.floating-card-title {
+  margin: 0 0 5px;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.3;
+  padding-right: 18px;
+}
+
+.floating-card-location {
+  margin: 0 0 10px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.floating-card-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.floating-card-desc {
+  margin: 0 0 14px;
+  font-size: 0.79rem;
+  color: var(--muted);
+  line-height: 1.55;
+  border-left: 2px solid rgba(124, 140, 255, 0.22);
+  padding-left: 10px;
+}
+
+.floating-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.floating-card-btn {
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: 7px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  letter-spacing: 0.02em;
+}
+
+.floating-card-btn.outline {
+  background: transparent;
+  border: 1px solid rgba(124, 140, 255, 0.28);
+  color: var(--accent);
+}
+
+.floating-card-btn.outline:hover {
+  background: rgba(124, 140, 255, 0.07);
+  border-color: rgba(124, 140, 255, 0.5);
+}
+
+.floating-card-btn.filled {
+  background: rgba(124, 140, 255, 0.13);
+  border: 1px solid rgba(124, 140, 255, 0.28);
+  color: var(--accent);
+}
+
+.floating-card-btn.filled:hover {
+  background: rgba(124, 140, 255, 0.22);
+  box-shadow: 0 0 14px rgba(124, 140, 255, 0.18);
+}

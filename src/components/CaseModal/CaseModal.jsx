@@ -1,4 +1,5 @@
 import { getCategoryMeta } from '../../utils/categoryStyles';
+import './CaseModal.css';
 
 export default function CaseModal({ item, onClose }) {
   if (!item) return null;
