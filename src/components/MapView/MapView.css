@@ -32,6 +32,44 @@
 	border-radius: 12px;
 	border: 1px solid var(--line);
 	overflow: visible;
+	isolation: isolate;
+}
+
+.map-surface::before,
+.map-surface::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	border-radius: inherit;
+}
+
+.map-surface::before {
+	z-index: 350;
+	background-image:
+		repeating-linear-gradient(
+			to bottom,
+			rgba(255, 255, 255, 0.022) 0px,
+			rgba(255, 255, 255, 0.022) 1px,
+			transparent 2px,
+			transparent 4px
+		),
+		radial-gradient(rgba(255, 255, 255, 0.035) 0.6px, transparent 0.8px);
+	background-size: 100% 4px, 3px 3px;
+	opacity: 0.095;
+	mix-blend-mode: soft-light;
+}
+
+.map-surface::after {
+	z-index: 360;
+	background-image:
+		radial-gradient(circle at 14% 30%, rgba(172, 184, 255, 0.13) 0.9px, transparent 2px),
+		radial-gradient(circle at 28% 58%, rgba(182, 198, 255, 0.12) 1px, transparent 2px),
+		radial-gradient(circle at 48% 24%, rgba(158, 174, 255, 0.1) 0.9px, transparent 2px),
+		radial-gradient(circle at 67% 72%, rgba(192, 206, 255, 0.11) 1px, transparent 2px),
+		radial-gradient(circle at 83% 37%, rgba(166, 182, 255, 0.1) 0.9px, transparent 2px);
+	opacity: 0.33;
+	animation: particles-drift 24s linear infinite;
 }
 
 .leaflet-wrap {
@@ -247,6 +285,18 @@
 	}
 }
 
+@keyframes particles-drift {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	50% {
+		transform: translate3d(-8px, 6px, 0);
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
 @media (max-width: 1000px) {
 	.map-surface {
 		height: 380px;
@@ -254,5 +304,11 @@
 
 	.leaflet-wrap .leaflet-container {
 		height: 380px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.map-surface::after {
+		animation: none;
 	}
 }

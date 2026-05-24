@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Tooltip, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -182,6 +182,36 @@ function MapResizeHandler({ isImmersive }) {
   return null;
 }
 
+function MapSelectionFlight({ selectedCaseId, displayCases, isImmersive }) {
+  const map = useMap();
+  const lastFlownCaseIdRef = useRef(null);
+
+  useEffect(() => {
+    if (!selectedCaseId) {
+      lastFlownCaseIdRef.current = null;
+      return;
+    }
+
+    if (lastFlownCaseIdRef.current === selectedCaseId) return;
+
+    const targetCase = displayCases.find((item) => item.id === selectedCaseId);
+    if (!targetCase) return;
+
+    const targetZoom = isImmersive ? 8 : 7;
+    const nextZoom = Math.max(map.getZoom(), targetZoom);
+
+    map.flyTo([targetCase.displayLatitude, targetCase.displayLongitude], nextZoom, {
+      duration: 1.35,
+      easeLinearity: 0.22,
+      noMoveStart: true,
+    });
+
+    lastFlownCaseIdRef.current = selectedCaseId;
+  }, [selectedCaseId, displayCases, isImmersive, map]);
+
+  return null;
+}
+
 export default function MapView({ cases, selectedCaseId, onSelectCase, onInvestigate, onStreetView, isImmersive, onToggleImmersive, filters, activeFilter, onFilterChange, categoryCounts }) {
   const activeCase = cases.find((c) => c.id === selectedCaseId) ?? null;
   const mapHeight = isImmersive ? '100%' : '540px';
@@ -212,6 +242,11 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onInvesti
           />
 
           <MapResizeHandler isImmersive={isImmersive} />
+          <MapSelectionFlight
+            selectedCaseId={selectedCaseId}
+            displayCases={displayCases}
+            isImmersive={isImmersive}
+          />
 
           {displayCases.map((item) => {
             const meta = getCategoryMeta(item.category);
