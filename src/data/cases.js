@@ -59,7 +59,7 @@ export const CASES = [
     year: '1974',
     latitude: -23.5489,
     longitude: -46.6361,
-    imageUrl: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=800',
+    imageUrl: '/cases/assombracao-edificio-joelma/1.jpeg',
     description: 'Um incêndio em 1974 matou 187 pessoas após se espalhar rapidamente pelos andares. Muitas vítimas ficaram presas ou saltaram do prédio. Após o desastre, surgiram relatos de gritos, vultos e elevadores funcionando sozinhos. Funcionários afirmam sentir presenças estranhas até hoje.',
     curiosity: 'As "Treze Almas" — vítimas que pularam juntas — viraram objeto de devoação popular e são lembradas em missas realizadas no local até hoje.',
     canVisit: '⚠️ Sim — prédio em funcionamento. Acesso público à área térrea.',

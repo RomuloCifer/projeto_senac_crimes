@@ -131,9 +131,6 @@
 }
 
 .close-modal {
-  position: absolute;
-  right: 14px;
-  top: 14px;
   padding: 6px 12px;
   font-size: 0.78rem;
   background: transparent;
@@ -147,6 +144,12 @@
 .close-modal:hover {
   background: rgba(255, 255, 255, 0.06);
   color: var(--text);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
 .modal-image-wrap {

@@ -37,9 +37,11 @@ export default function CaseModal({ item, onClose }) {
         aria-label={`Detalhes do caso ${item.title}`}
         onClick={(event) => event.stopPropagation()}
       >
-        <button type="button" className="close-modal" onClick={onClose}>
-          Fechar
-        </button>
+        <div className="modal-header">
+          <button type="button" className="close-modal" onClick={onClose}>
+            Fechar
+          </button>
+        </div>
 
         <div className="modal-image-wrap">
           <img src={item.imageUrl} alt={item.title} className="modal-image" />
