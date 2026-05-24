@@ -56,7 +56,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell${modalCase ? ' has-cinematic-modal' : ''}`}>
       {showLanding ? (
         isLoading ? (
           <LoadingScreen />
@@ -64,7 +64,7 @@ export default function App() {
           <Hero onExplore={handleExplore} />
         )
       ) : (
-        <>
+        <div className="app-main-stage">
           <Header
             isImmersive={isImmersive}
             onToggleImmersive={handleToggleImmersive}
@@ -91,9 +91,10 @@ export default function App() {
           />
 
           <StreetViewModal caseItem={streetViewCase} onClose={() => setStreetViewCase(null)} />
-          <CaseModal item={modalCase} onClose={() => setModalCase(null)} />
-        </>
+        </div>
       )}
+
+      <CaseModal item={modalCase} onClose={() => setModalCase(null)} />
     </div>
   );
 }

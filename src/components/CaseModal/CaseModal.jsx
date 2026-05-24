@@ -18,7 +18,7 @@ export default function CaseModal({ item, onClose }) {
     function handleKey(e) {
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowRight') goTo(lightboxIndex + 1);
-      if (e.key === 'ArrowLeft')  goTo(lightboxIndex - 1);
+      if (e.key === 'ArrowLeft') goTo(lightboxIndex - 1);
     }
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
@@ -31,108 +31,123 @@ export default function CaseModal({ item, onClose }) {
 
   if (!item) return null;
   const categoryMeta = getCategoryMeta(item.category);
+  const locationLabel = `${item.city}/${item.state}`;
 
   return (
     <>
-    <div className="modal-overlay" role="presentation" onClick={onClose}>
-      <article
-        className="case-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-label={`Detalhes do caso ${item.title}`}
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="modal-header">
-          <button type="button" className="close-modal" onClick={onClose}>
-            Fechar
-          </button>
-        </div>
+      <div className="modal-overlay" role="presentation" onClick={onClose}>
+        <article
+          className="case-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Detalhes do caso ${item.title}`}
+          onClick={(event) => event.stopPropagation()}
+        >
+          <div className="modal-image-hero">
+            <img src={item.imageUrl} alt={item.title} className="modal-image" />
+            <div className="modal-image-shade" aria-hidden="true" />
+            <button type="button" className="close-modal" onClick={onClose}>
+              Fechar
+            </button>
 
-        <div className="modal-image-wrap">
-          <img src={item.imageUrl} alt={item.title} className="modal-image" />
-        </div>
-
-        <h3>{item.title}</h3>
-        <p className="modal-category" style={{ color: categoryMeta.color }}>
-          {categoryMeta.label}
-        </p>
-
-        <p className="modal-meta">
-          {item.city}/{item.state} - {item.year}
-        </p>
-        <p>{item.description}</p>
-
-        <div className="curiosity-box">
-          <h4>Curiosidade</h4>
-          <p>{item.curiosity}</p>
-        </div>
-
-        {item.canVisit && (
-          <div className="modal-visit-box">
-            <h4>Pode visitar?</h4>
-            <p>{item.canVisit}</p>
-          </div>
-        )}
-
-        {item.images?.length > 0 && (
-          <div className="modal-gallery">
-            <h4>Fotos</h4>
-            <div className="modal-gallery-scroll">
-              {item.images.map((src, i) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt={`${item.title} — foto ${i + 1}`}
-                  className="modal-gallery-img"
-                  onClick={() => setLightboxIndex(i)}
-                />
-              ))}
+            <div className="modal-hero-content">
+              <span className="modal-category-pill" style={{ '--category-color': categoryMeta.color }}>
+                {categoryMeta.label}
+              </span>
+              <h3>{item.title}</h3>
             </div>
           </div>
-        )}
-      </article>
-    </div>
 
-    {/* ── Lightbox ──────────────────────────────────────────── */}
-    {lightboxIndex !== null && item.images?.length > 0 && (
-      <div
-        className="lightbox-overlay"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Visualizar foto"
-        onClick={closeLightbox}
-      >
-        <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-          <button className="lightbox-close" onClick={closeLightbox} aria-label="Fechar">✕</button>
+          <div className="modal-content-block">
+            <div className="modal-meta-grid">
+              <div className="meta-item">
+                <span className="meta-label">Localização</span>
+                <span className="meta-value">{locationLabel}</span>
+              </div>
 
-          <button
-            className="lightbox-arrow left"
-            onClick={() => goTo(lightboxIndex - 1)}
-            disabled={lightboxIndex === 0}
-            aria-label="Foto anterior"
-          >
-            ‹
-          </button>
+              <div className="meta-item">
+                <span className="meta-label">Período</span>
+                <span className="meta-value">{item.year}</span>
+              </div>
+            </div>
 
-          <img
-            src={item.images[lightboxIndex]}
-            alt={`${item.title} — foto ${lightboxIndex + 1}`}
-            className="lightbox-img"
-          />
+            <section className="modal-section">
+              <h4>Dossiê</h4>
+              <p>{item.description}</p>
+            </section>
 
-          <button
-            className="lightbox-arrow right"
-            onClick={() => goTo(lightboxIndex + 1)}
-            disabled={lightboxIndex === item.images.length - 1}
-            aria-label="Próxima foto"
-          >
-            ›
-          </button>
+            <section className="curiosity-box modal-section">
+              <h4>Curiosidade</h4>
+              <p>{item.curiosity}</p>
+            </section>
 
-          <p className="lightbox-counter">{lightboxIndex + 1} / {item.images.length}</p>
-        </div>
+            {item.canVisit && (
+              <section className="modal-visit-box modal-section">
+                <h4>Pode visitar?</h4>
+                <p>{item.canVisit}</p>
+              </section>
+            )}
+
+            {item.images?.length > 0 && (
+              <section className="modal-gallery modal-section">
+                <h4>Evidências Fotográficas</h4>
+                <div className="modal-gallery-scroll">
+                  {item.images.map((src, i) => (
+                    <img
+                      key={src}
+                      src={src}
+                      alt={`${item.title} — foto ${i + 1}`}
+                      className="modal-gallery-img"
+                      onClick={() => setLightboxIndex(i)}
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+        </article>
       </div>
-    )}
-  </>
+
+      {/* ── Lightbox ──────────────────────────────────────────── */}
+      {lightboxIndex !== null && item.images?.length > 0 && (
+        <div
+          className="lightbox-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Visualizar foto"
+          onClick={closeLightbox}
+        >
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={closeLightbox} aria-label="Fechar">✕</button>
+
+            <button
+              className="lightbox-arrow left"
+              onClick={() => goTo(lightboxIndex - 1)}
+              disabled={lightboxIndex === 0}
+              aria-label="Foto anterior"
+            >
+              ‹
+            </button>
+
+            <img
+              src={item.images[lightboxIndex]}
+              alt={`${item.title} — foto ${lightboxIndex + 1}`}
+              className="lightbox-img"
+            />
+
+            <button
+              className="lightbox-arrow right"
+              onClick={() => goTo(lightboxIndex + 1)}
+              disabled={lightboxIndex === item.images.length - 1}
+              aria-label="Próxima foto"
+            >
+              ›
+            </button>
+
+            <p className="lightbox-counter">{lightboxIndex + 1} / {item.images.length}</p>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

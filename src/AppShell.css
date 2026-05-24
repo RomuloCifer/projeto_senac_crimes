@@ -7,6 +7,17 @@
   background: var(--bg);
 }
 
+.app-main-stage {
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), filter 360ms cubic-bezier(0.22, 1, 0.36, 1), opacity 320ms ease;
+  transform-origin: center top;
+}
+
+.app-shell.has-cinematic-modal .app-main-stage {
+  transform: scale(1.018);
+  filter: blur(1.8px) saturate(0.82) brightness(0.7);
+  opacity: 0.78;
+}
+
 .main-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
