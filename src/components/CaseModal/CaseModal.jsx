@@ -1,12 +1,34 @@
+import { useState, useEffect, useCallback } from 'react';
 import { getCategoryMeta } from '../../utils/categoryStyles';
 import './CaseModal.css';
 
 export default function CaseModal({ item, onClose }) {
-  if (!item) return null;
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+
+  const goTo = useCallback((index) => {
+    if (!item?.images) return;
+    if (index >= 0 && index < item.images.length) setLightboxIndex(index);
+  }, [item]);
+
+  // Teclado: Escape fecha, setas navegam
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    function handleKey(e) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') goTo(lightboxIndex + 1);
+      if (e.key === 'ArrowLeft')  goTo(lightboxIndex - 1);
+    }
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [lightboxIndex, closeLightbox, goTo]);
+
+  if (!item) return null;
   const categoryMeta = getCategoryMeta(item.category);
 
   return (
+    <>
     <div className="modal-overlay" role="presentation" onClick={onClose}>
       <article
         className="case-modal"
@@ -55,6 +77,7 @@ export default function CaseModal({ item, onClose }) {
                   src={src}
                   alt={`${item.title} — foto ${i + 1}`}
                   className="modal-gallery-img"
+                  onClick={() => setLightboxIndex(i)}
                 />
               ))}
             </div>
@@ -62,5 +85,47 @@ export default function CaseModal({ item, onClose }) {
         )}
       </article>
     </div>
+
+    {/* ── Lightbox ──────────────────────────────────────────── */}
+    {lightboxIndex !== null && item.images?.length > 0 && (
+      <div
+        className="lightbox-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Visualizar foto"
+        onClick={closeLightbox}
+      >
+        <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+          <button className="lightbox-close" onClick={closeLightbox} aria-label="Fechar">✕</button>
+
+          <button
+            className="lightbox-arrow left"
+            onClick={() => goTo(lightboxIndex - 1)}
+            disabled={lightboxIndex === 0}
+            aria-label="Foto anterior"
+          >
+            ‹
+          </button>
+
+          <img
+            src={item.images[lightboxIndex]}
+            alt={`${item.title} — foto ${lightboxIndex + 1}`}
+            className="lightbox-img"
+          />
+
+          <button
+            className="lightbox-arrow right"
+            onClick={() => goTo(lightboxIndex + 1)}
+            disabled={lightboxIndex === item.images.length - 1}
+            aria-label="Próxima foto"
+          >
+            ›
+          </button>
+
+          <p className="lightbox-counter">{lightboxIndex + 1} / {item.images.length}</p>
+        </div>
+      </div>
+    )}
+  </>
   );
 }

@@ -9,6 +9,100 @@
   padding: 20px;
 }
 
+/* ── Lightbox ──────────────────────────────────────────────── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  background: rgba(5, 5, 8, 0.93);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 48px 16px 40px;
+  max-width: 96vw;
+  max-height: 96vh;
+}
+
+.lightbox-img {
+  max-width: min(88vw, 1000px);
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f5f5f5;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.lightbox-arrow {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f5f5f5;
+  border-radius: 10px;
+  width: 44px;
+  height: 64px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, opacity 0.15s;
+  line-height: 1;
+}
+
+.lightbox-arrow:hover:not(:disabled) {
+  background: rgba(124, 140, 255, 0.2);
+  border-color: rgba(124, 140, 255, 0.35);
+}
+
+.lightbox-arrow:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  letter-spacing: 0.08em;
+}
+
 .case-modal {
   max-width: 520px;
   width: min(100%, 520px);
