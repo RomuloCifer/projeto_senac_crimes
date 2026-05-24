@@ -37,6 +37,29 @@ export default function CaseModal({ item, onClose }) {
           <h4>Curiosidade</h4>
           <p>{item.curiosity}</p>
         </div>
+
+        {item.canVisit && (
+          <div className="modal-visit-box">
+            <h4>Pode visitar?</h4>
+            <p>{item.canVisit}</p>
+          </div>
+        )}
+
+        {item.images?.length > 0 && (
+          <div className="modal-gallery">
+            <h4>Fotos</h4>
+            <div className="modal-gallery-scroll">
+              {item.images.map((src, i) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt={`${item.title} — foto ${i + 1}`}
+                  className="modal-gallery-img"
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </article>
     </div>
   );

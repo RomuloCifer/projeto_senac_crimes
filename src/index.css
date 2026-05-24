@@ -56,3 +56,27 @@ button {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+/* ── Scrollbar global ──────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(124, 140, 255, 0.35) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(124, 140, 255, 0.35);
+  border-radius: 99px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 140, 255, 0.6);
+}

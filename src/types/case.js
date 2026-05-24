@@ -15,6 +15,8 @@
  * @property {string} imageUrl
  * @property {string} description
  * @property {string} curiosity
+ * @property {string[]} [images]   - fotos adicionais em public/cases/<id>/
+ * @property {string} [canVisit]   - info sobre visita ao local
  */
 
 export {};
