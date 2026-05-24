@@ -43,7 +43,7 @@ export default function App() {
     const timeoutId = window.setTimeout(() => {
       setIsLoading(false);
       setShowLanding(false);
-    }, 1300);
+    }, 2800);
 
     return () => window.clearTimeout(timeoutId);
   }, [isLoading]);
