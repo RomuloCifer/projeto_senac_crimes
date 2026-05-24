@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Tooltip, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -212,10 +212,35 @@ function MapSelectionFlight({ selectedCaseId, displayCases, isImmersive }) {
   return null;
 }
 
+function MapCloseZoomOut({ closeSignal }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (closeSignal === 0) return;
+
+    const currentZoom = map.getZoom();
+    const targetZoom = Math.max(5, currentZoom - 1);
+
+    map.flyTo(map.getCenter(), targetZoom, {
+      duration: 1.05,
+      easeLinearity: 0.24,
+      noMoveStart: true,
+    });
+  }, [closeSignal, map]);
+
+  return null;
+}
+
 export default function MapView({ cases, selectedCaseId, onSelectCase, onInvestigate, onStreetView, isImmersive, onToggleImmersive, filters, activeFilter, onFilterChange, categoryCounts }) {
   const activeCase = cases.find((c) => c.id === selectedCaseId) ?? null;
   const mapHeight = isImmersive ? '100%' : '540px';
   const displayCases = useMemo(() => buildDisplayCases(cases.map((item) => ({ ...item }))), [cases]);
+  const [closeSignal, setCloseSignal] = useState(0);
+
+  const handleCloseFloatingCard = () => {
+    onSelectCase(null);
+    setCloseSignal((value) => value + 1);
+  };
 
   return (
     <section className={`map-panel${isImmersive ? ' immersive' : ''}`}>
@@ -260,6 +285,7 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onInvesti
             displayCases={displayCases}
             isImmersive={isImmersive}
           />
+          <MapCloseZoomOut closeSignal={closeSignal} />
 
           {displayCases.map((item) => {
             const meta = getCategoryMeta(item.category);
@@ -303,7 +329,7 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onInvesti
 
       <MapFloatingCard
         item={activeCase}
-        onClose={() => onSelectCase(null)} onInvestigate={onInvestigate} onStreetView={onStreetView}
+        onClose={handleCloseFloatingCard} onInvestigate={onInvestigate} onStreetView={onStreetView}
         isImmersive={isImmersive}
       />
     </section>
