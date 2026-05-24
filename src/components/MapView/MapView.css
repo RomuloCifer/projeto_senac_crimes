@@ -49,21 +49,32 @@
 	position: fixed;
 	inset: 0;
 	z-index: 8000;
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+	height: 100dvh;
 	border-radius: 0;
 	border: none;
-	padding: 8px;
+	padding: 0;
 	background: #000;
 }
 
 .map-panel.immersive .map-surface {
-	height: calc(100vh - 16px);
-	border-radius: 10px;
-	border-color: var(--line);
+	flex: 1 1 auto;
+	min-height: 0;
+	height: auto;
+	border-radius: 0;
+	border: none;
+}
+
+.map-panel.immersive .leaflet-wrap {
+	height: 100%;
 }
 
 .map-panel.immersive .leaflet-wrap .leaflet-container {
-	height: calc(100vh - 16px);
-	border-radius: 10px;
+	height: 100% !important;
+	border-radius: 0;
 }
 
 .immersive-exit-btn {
