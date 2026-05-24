@@ -227,6 +227,19 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onInvesti
       )}
 
       <div className="map-surface leaflet-wrap">
+        <div className="map-atmosphere-layer" aria-hidden="true">
+          <span className="atm-particle p1" />
+          <span className="atm-particle p2" />
+          <span className="atm-particle p3" />
+          <span className="atm-particle p4" />
+          <span className="atm-particle p5" />
+          <span className="atm-particle p6" />
+          <span className="atm-particle p7" />
+          <span className="atm-particle p8" />
+          <span className="atm-particle p9" />
+          <span className="atm-particle p10" />
+        </div>
+
         <MapContainer
           center={BRAZIL_CENTER}
           zoom={BRAZIL_ZOOM}

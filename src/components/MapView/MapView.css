@@ -35,6 +35,49 @@
 	isolation: isolate;
 }
 
+.map-atmosphere-layer {
+	position: absolute;
+	inset: 0;
+	z-index: 450;
+	pointer-events: none;
+	border-radius: inherit;
+	overflow: hidden;
+	background-image:
+		repeating-linear-gradient(
+			to bottom,
+			rgba(255, 255, 255, 0.024) 0px,
+			rgba(255, 255, 255, 0.024) 1px,
+			transparent 2px,
+			transparent 4px
+		),
+		radial-gradient(rgba(255, 255, 255, 0.05) 0.6px, transparent 0.95px);
+	background-size: 100% 4px, 3px 3px;
+	opacity: 0.15;
+	animation: particles-twinkle 4.2s ease-in-out infinite;
+}
+
+.map-atmosphere-layer .atm-particle {
+	position: absolute;
+	width: 2px;
+	height: 2px;
+	border-radius: 50%;
+	background: rgba(182, 196, 255, 0.8);
+	box-shadow: 0 0 6px rgba(172, 184, 255, 0.5);
+	opacity: 0.42;
+	animation: particle-float 18s linear infinite;
+}
+
+.map-atmosphere-layer .p1 { left: 8%; top: 24%; animation-duration: 19s; animation-delay: -1.5s; }
+.map-atmosphere-layer .p2 { left: 14%; top: 66%; animation-duration: 16s; animation-delay: -4.2s; }
+.map-atmosphere-layer .p3 { left: 26%; top: 38%; animation-duration: 20s; animation-delay: -2.4s; }
+.map-atmosphere-layer .p4 { left: 37%; top: 72%; animation-duration: 17s; animation-delay: -6.1s; }
+.map-atmosphere-layer .p5 { left: 48%; top: 20%; animation-duration: 21s; animation-delay: -3.6s; }
+.map-atmosphere-layer .p6 { left: 56%; top: 54%; animation-duration: 18s; animation-delay: -5.3s; }
+.map-atmosphere-layer .p7 { left: 64%; top: 34%; animation-duration: 22s; animation-delay: -1.1s; }
+.map-atmosphere-layer .p8 { left: 74%; top: 78%; animation-duration: 15s; animation-delay: -7.2s; }
+.map-atmosphere-layer .p9 { left: 84%; top: 46%; animation-duration: 19s; animation-delay: -2.8s; }
+.map-atmosphere-layer .p10 { left: 91%; top: 26%; animation-duration: 17s; animation-delay: -4.8s; }
+
 .map-surface::before,
 .map-surface::after {
 	content: '';
@@ -49,27 +92,33 @@
 	background-image:
 		repeating-linear-gradient(
 			to bottom,
-			rgba(255, 255, 255, 0.022) 0px,
-			rgba(255, 255, 255, 0.022) 1px,
+			rgba(255, 255, 255, 0.026) 0px,
+			rgba(255, 255, 255, 0.026) 1px,
 			transparent 2px,
 			transparent 4px
 		),
-		radial-gradient(rgba(255, 255, 255, 0.035) 0.6px, transparent 0.8px);
-	background-size: 100% 4px, 3px 3px;
-	opacity: 0.095;
-	mix-blend-mode: soft-light;
+		radial-gradient(rgba(255, 255, 255, 0.05) 0.7px, transparent 1px);
+	background-size: 100% 4px, 4px 4px;
+	opacity: 0.13;
+	mix-blend-mode: screen;
 }
 
 .map-surface::after {
 	z-index: 360;
 	background-image:
-		radial-gradient(circle at 14% 30%, rgba(172, 184, 255, 0.13) 0.9px, transparent 2px),
-		radial-gradient(circle at 28% 58%, rgba(182, 198, 255, 0.12) 1px, transparent 2px),
-		radial-gradient(circle at 48% 24%, rgba(158, 174, 255, 0.1) 0.9px, transparent 2px),
-		radial-gradient(circle at 67% 72%, rgba(192, 206, 255, 0.11) 1px, transparent 2px),
-		radial-gradient(circle at 83% 37%, rgba(166, 182, 255, 0.1) 0.9px, transparent 2px);
-	opacity: 0.33;
-	animation: particles-drift 24s linear infinite;
+		radial-gradient(circle at 8% 24%, rgba(172, 184, 255, 0.2) 1px, transparent 2.4px),
+		radial-gradient(circle at 16% 72%, rgba(182, 198, 255, 0.18) 1.1px, transparent 2.6px),
+		radial-gradient(circle at 24% 46%, rgba(158, 174, 255, 0.16) 1px, transparent 2.4px),
+		radial-gradient(circle at 38% 20%, rgba(192, 206, 255, 0.18) 1.1px, transparent 2.6px),
+		radial-gradient(circle at 46% 66%, rgba(166, 182, 255, 0.17) 1px, transparent 2.4px),
+		radial-gradient(circle at 58% 35%, rgba(172, 184, 255, 0.18) 1.1px, transparent 2.6px),
+		radial-gradient(circle at 69% 75%, rgba(182, 198, 255, 0.16) 1px, transparent 2.4px),
+		radial-gradient(circle at 78% 28%, rgba(158, 174, 255, 0.17) 1.1px, transparent 2.6px),
+		radial-gradient(circle at 87% 58%, rgba(192, 206, 255, 0.17) 1px, transparent 2.4px),
+		radial-gradient(circle at 93% 18%, rgba(166, 182, 255, 0.17) 1.1px, transparent 2.6px);
+	opacity: 0.56;
+	filter: drop-shadow(0 0 2px rgba(172, 184, 255, 0.16));
+	animation: particles-drift 24s linear infinite, particles-twinkle 3.8s ease-in-out infinite;
 }
 
 .leaflet-wrap {
@@ -297,6 +346,38 @@
 	}
 }
 
+@keyframes particles-twinkle {
+	0% {
+		opacity: 0.42;
+	}
+	50% {
+		opacity: 0.62;
+	}
+	100% {
+		opacity: 0.46;
+	}
+}
+
+@keyframes particle-float {
+	0% {
+		transform: translate3d(0, 0, 0);
+		opacity: 0.25;
+	}
+	35% {
+		opacity: 0.52;
+	}
+	50% {
+		transform: translate3d(-5px, 4px, 0);
+	}
+	75% {
+		opacity: 0.4;
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+		opacity: 0.22;
+	}
+}
+
 @media (max-width: 1000px) {
 	.map-surface {
 		height: 380px;
@@ -308,6 +389,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+	.map-atmosphere-layer,
+	.map-atmosphere-layer .atm-particle,
 	.map-surface::after {
 		animation: none;
 	}
