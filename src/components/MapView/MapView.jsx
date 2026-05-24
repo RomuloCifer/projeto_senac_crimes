@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import L from 'leaflet';
-import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Tooltip, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getCategoryMeta } from '../../utils/categoryStyles';
 import MapFloatingCard from '../MapFloatingCard/MapFloatingCard';
@@ -78,6 +78,16 @@ function createWaveIcon(item, meta, isActive) {
       </div>
     `,
   });
+}
+
+function buildBriefDescription(text, maxLength = 88) {
+  if (!text) return '';
+
+  const normalized = text.replace(/\s+/g, ' ').trim();
+  const firstSentence = normalized.split(/(?<=[.!?])\s+/)[0] || normalized;
+
+  if (firstSentence.length <= maxLength) return firstSentence;
+  return `${firstSentence.slice(0, maxLength - 1).trimEnd()}...`;
 }
 
 function metersToLatLngOffset(baseLat, meters, angleRad) {
@@ -206,6 +216,7 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onInvesti
           {displayCases.map((item) => {
             const meta = getCategoryMeta(item.category);
             const isActive = selectedCaseId === item.id;
+            const briefDescription = buildBriefDescription(item.description);
             return (
               <Marker
                 key={item.id}
@@ -213,7 +224,17 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onInvesti
                 icon={createWaveIcon(item, meta, isActive)}
                 zIndexOffset={isActive ? 1200 : 800}
                 eventHandlers={{ click: () => onSelectCase(item) }}
-              />
+              >
+                <Tooltip
+                  direction="top"
+                  offset={[0, -18]}
+                  opacity={1}
+                  className="case-pin-tooltip"
+                >
+                  <div className="pin-tooltip-title">{item.title}</div>
+                  <div className="pin-tooltip-desc">{briefDescription}</div>
+                </Tooltip>
+              </Marker>
             );
           })}
         </MapContainer>
