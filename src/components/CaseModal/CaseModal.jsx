@@ -24,6 +24,11 @@ export default function CaseModal({ item, onClose }) {
     return () => window.removeEventListener('keydown', handleKey);
   }, [lightboxIndex, closeLightbox, goTo]);
 
+  // Reseta o lightbox ao trocar de caso
+  useEffect(() => {
+    setLightboxIndex(null);
+  }, [item]);
+
   if (!item) return null;
   const categoryMeta = getCategoryMeta(item.category);
 

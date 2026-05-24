@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import MapView from './components/MapView/MapView';
@@ -48,14 +48,12 @@ export default function App() {
     return () => window.clearTimeout(timeoutId);
   }, [isLoading]);
 
-  const handleExplore = () => {
-    setIsLoading(true);
-  };
-
-  const handleFilterChange = (nextFilter) => {
+  const handleToggleImmersive = useCallback(() => setIsImmersive((v) => !v), []);
+  const handleExplore = useCallback(() => setIsLoading(true), []);
+  const handleFilterChange = useCallback((nextFilter) => {
     setActiveFilter(nextFilter);
     setSelectedCase(null);
-  };
+  }, []);
 
   return (
     <div className="app-shell">
@@ -69,7 +67,7 @@ export default function App() {
         <>
           <Header
             isImmersive={isImmersive}
-            onToggleImmersive={() => setIsImmersive((current) => !current)}
+            onToggleImmersive={handleToggleImmersive}
           />
 
           <MapView
@@ -79,7 +77,7 @@ export default function App() {
             onInvestigate={setModalCase}
             onStreetView={setStreetViewCase}
             isImmersive={isImmersive}
-            onToggleImmersive={() => setIsImmersive((current) => !current)}
+            onToggleImmersive={handleToggleImmersive}
             filters={FILTERS}
             activeFilter={activeFilter}
             onFilterChange={handleFilterChange}

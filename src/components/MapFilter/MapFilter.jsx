@@ -12,8 +12,10 @@ export default function MapFilter({ filters, activeFilter, onChange, counts }) {
         return (
           <button
             key={filter.value}
+            type="button"
             className={`map-filter-btn${isActive ? ' active' : ''}`}
             onClick={() => onChange(filter.value)}
+            aria-pressed={isActive}
             style={meta ? { '--filter-color': meta.color } : undefined}
           >
             {meta && <span className="map-filter-dot" />}

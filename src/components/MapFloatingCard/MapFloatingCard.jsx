@@ -1,7 +1,9 @@
+import { getCategoryMeta } from '../../utils/categoryStyles';
 import './MapFloatingCard.css';
 
 export default function MapFloatingCard({ item, onClose, onInvestigate, onStreetView, isImmersive = false }) {
   if (!item) return null;
+  const meta = getCategoryMeta(item.category);
 
   return (
     <div className={`floating-card${isImmersive ? ' immersive' : ''}`} role="dialog" aria-label={item.title}>
@@ -16,7 +18,12 @@ export default function MapFloatingCard({ item, onClose, onInvestigate, onStreet
         ✕
       </button>
 
-      <div className="floating-card-tag">{item.category}</div>
+      <div
+        className="floating-card-tag"
+        style={{ color: meta.color, borderColor: `color-mix(in srgb, ${meta.color} 35%, transparent)` }}
+      >
+        {meta.label}
+      </div>
 
       <h3 className="floating-card-title">{item.title}</h3>
 

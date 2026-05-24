@@ -6,7 +6,7 @@ export default function CaseList({ cases, selectedCaseId, onSelectCase }) {
     <aside className="case-list-panel" aria-label="Lista de casos">
       <div className="case-list-header">
         <h2>Casos</h2>
-        <p>{cases.length} encontrados</p>
+        <p>{cases.length} {cases.length === 1 ? 'encontrado' : 'encontrados'}</p>
       </div>
 
       <ul className="case-list">

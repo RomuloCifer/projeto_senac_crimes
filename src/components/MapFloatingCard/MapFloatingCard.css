@@ -80,8 +80,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid rgba(124, 140, 255, 0.22);
+  border: 1px solid;
   border-radius: 4px;
   padding: 2px 7px;
   margin-bottom: 8px;
