@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
-import { MapContainer, TileLayer, CircleMarker, useMap } from 'react-leaflet';
+import L from 'leaflet';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getCategoryMeta } from '../../utils/categoryStyles';
 import MapFloatingCard from '../MapFloatingCard/MapFloatingCard';
@@ -11,6 +12,72 @@ const BRAZIL_ZOOM = 4;
 
 function toRad(value) {
   return (value * Math.PI) / 180;
+}
+
+function hexToRgb(hex) {
+  const cleaned = hex.replace('#', '').trim();
+  const normalized = cleaned.length === 3
+    ? cleaned.split('').map((c) => c + c).join('')
+    : cleaned;
+
+  if (normalized.length !== 6) return null;
+
+  const value = Number.parseInt(normalized, 16);
+  if (Number.isNaN(value)) return null;
+
+  return {
+    r: (value >> 16) & 255,
+    g: (value >> 8) & 255,
+    b: value & 255,
+  };
+}
+
+function rgbaFromHex(hex, alpha) {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return `rgba(124, 140, 255, ${alpha})`;
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+}
+
+function darkenHex(hex, ratio = 0.42) {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return '#1E2230';
+  const clamp = (v) => Math.max(0, Math.min(255, Math.round(v * ratio)));
+  const toHex = (v) => clamp(v).toString(16).padStart(2, '0');
+  return `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`;
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function createWaveIcon(item, meta, isActive) {
+  const safeTitle = escapeHtml(item.title);
+  const darkColor = darkenHex(meta.color, 0.36);
+  const glowColor = rgbaFromHex(meta.color, 0.38);
+  const waveColor = rgbaFromHex(meta.color, 0.26);
+  const waveSoftColor = rgbaFromHex(meta.color, 0.14);
+
+  return L.divIcon({
+    className: 'case-wave-icon',
+    iconSize: [52, 52],
+    iconAnchor: [26, 26],
+    html: `
+      <div
+        class="case-wave-marker${isActive ? ' is-active' : ''}"
+        style="--marker-color:${meta.color};--marker-color-dark:${darkColor};--marker-glow:${glowColor};--marker-wave:${waveColor};--marker-wave-soft:${waveSoftColor};"
+        aria-label="${safeTitle}"
+      >
+        <span class="wave wave-1" aria-hidden="true"></span>
+        <span class="wave wave-2" aria-hidden="true"></span>
+        <span class="marker-core" aria-hidden="true"></span>
+      </div>
+    `,
+  });
 }
 
 function metersToLatLngOffset(baseLat, meters, angleRad) {
@@ -140,16 +207,11 @@ export default function MapView({ cases, selectedCaseId, onSelectCase, onInvesti
             const meta = getCategoryMeta(item.category);
             const isActive = selectedCaseId === item.id;
             return (
-              <CircleMarker
+              <Marker
                 key={item.id}
-                center={[item.displayLatitude, item.displayLongitude]}
-                radius={isActive ? 13 : 9}
-                pathOptions={{
-                  fillColor: meta.color,
-                  fillOpacity: 0.92,
-                  color: '#ffffff',
-                  weight: isActive ? 3 : 2,
-                }}
+                position={[item.displayLatitude, item.displayLongitude]}
+                icon={createWaveIcon(item, meta, isActive)}
+                zIndexOffset={isActive ? 1200 : 800}
                 eventHandlers={{ click: () => onSelectCase(item) }}
               />
             );
