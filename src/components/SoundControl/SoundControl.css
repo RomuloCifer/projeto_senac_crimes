@@ -38,6 +38,32 @@
   outline: 2px solid rgba(255,255,255,0.12);
 }
 
+.sound-icon svg {
+  display: block;
+  color: #e6e6e9; /* default icon color */
+  transition: color 180ms ease, filter 220ms ease;
+}
+
+.sound-icon.muted svg {
+  color: #8a8b8e;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.45));
+}
+
+.sound-icon.low svg {
+  color: #ffd4b2;
+  filter: drop-shadow(0 0 6px rgba(255,140,80,0.06));
+}
+
+.sound-icon.mid svg {
+  color: #ffb3a1;
+  filter: drop-shadow(0 0 8px rgba(200,40,40,0.08));
+}
+
+.sound-icon.high svg {
+  color: #ff9a88;
+  filter: drop-shadow(0 0 10px rgba(200,40,40,0.12));
+}
+
 .sound-meta {
   display: flex;
   flex-direction: column;
