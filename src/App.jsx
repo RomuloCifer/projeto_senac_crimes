@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import MapView from './components/MapView/MapView';
 import CaseList from './components/CaseList/CaseList';
+import SoundControl from './components/SoundControl/SoundControl';
 import CaseModal from './components/CaseModal/CaseModal';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 import StreetViewModal from './components/StreetViewModal/StreetViewModal';
@@ -89,6 +90,15 @@ export default function App() {
             selectedCaseId={selectedCase?.id}
             onSelectCase={setSelectedCase}
           />
+
+          {/* Barra de controles de som (após os cards) */}
+          <div className="sound-controls-container">
+            <div className="sound-controls-inner">
+              <SoundControl type="music" label="Música" initialVolume={60} />
+              <SoundControl type="ambient" label="Ambiente" initialVolume={50} />
+              <SoundControl type="jumpscare" label="Jumpscare" initialVolume={80} />
+            </div>
+          </div>
 
           <StreetViewModal caseItem={streetViewCase} onClose={() => setStreetViewCase(null)} />
         </div>
