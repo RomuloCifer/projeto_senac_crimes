@@ -3,9 +3,11 @@ import './StreetViewModal.css';
 export default function StreetViewModal({ caseItem, onClose }) {
   if (!caseItem) return null;
 
-  // Embed URL oficial do Google Maps (sem chave de API para uso público)
-  // Tenta exibir o Street View; se não houver cobertura, mostra o mapa normal
-  const src = `https://maps.google.com/maps?q=${caseItem.latitude},${caseItem.longitude}&layer=c&z=18&output=embed`;
+  // Se o caso fornecer um link embed específico, usa-o (ex.: Street View embed)
+  // Caso contrário monta uma URL genérica por lat/lng que tenta abrir o Street View
+  const src = caseItem.streetViewEmbedUrl
+    ? caseItem.streetViewEmbedUrl
+    : `https://maps.google.com/maps?q=${caseItem.latitude},${caseItem.longitude}&layer=c&z=18&output=embed`;
 
   return (
     <div

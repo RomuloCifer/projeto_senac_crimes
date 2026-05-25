@@ -115,6 +115,8 @@ export const CASES = [
     curiosity: 'Existem várias versões da história.',
     canVisit: '✅ Sim — via pública.',
     images: ['/cases/opala-preto/1.jpg'],
+    // Embed URL do Street View (modo "embedded") fornecido pelo usuário
+    streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779744976058!6m8!1m7!1sAXvSFRJi938mdJisl9yNuw!2m2!1d-22.94195729973513!2d-43.21004408777955!3f254.46910128525457!4f-16.842016902493285!5f0.7820865974627469',
   },
   {
     id: 'loira-banheiro',
