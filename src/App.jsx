@@ -7,6 +7,7 @@ import SoundControl from './components/SoundControl/SoundControl';
 import CaseModal from './components/CaseModal/CaseModal';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 import StreetViewModal from './components/StreetViewModal/StreetViewModal';
+import SeoStructuredData from './components/SeoStructuredData/SeoStructuredData';
 import { CASES } from './data/cases';
 import { FILTERS } from './utils/categoryStyles';
 import './AppShell.css';
@@ -58,6 +59,8 @@ export default function App() {
 
   return (
     <div className={`app-shell${modalCase ? ' has-cinematic-modal' : ''}`}>
+      <SeoStructuredData cases={CASES} />
+
       {showLanding ? (
         isLoading ? (
           <LoadingScreen />
