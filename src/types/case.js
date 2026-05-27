@@ -17,6 +17,7 @@
  * @property {string} curiosity
  * @property {string[]} [images]   - fotos adicionais em public/cases/<id>/
  * @property {string} [canVisit]   - info sobre visita ao local
+ * @property {string} [videoEmbedUrl] - URL embed para vídeo opcional no modal
  */
 
 export {};

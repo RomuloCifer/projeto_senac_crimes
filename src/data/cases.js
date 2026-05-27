@@ -40,6 +40,7 @@ export const CASES = [
       '/cases/assombracao-edificio-joelma/2.jpeg',
       '/cases/assombracao-edificio-joelma/3.jpeg',
     ],
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/zQwLSRTNwZs?rel=0&modestbranding=1&playsinline=1',
   },
   {
     id: 'castelinho-apa',
@@ -56,6 +57,7 @@ export const CASES = [
     canVisit: '❌ Não — acesso proibido.',
     images: ['/cases/castelinho-apa/1.jpg'],
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779746635211!6m8!1m7!1sy6mBqlkpoCMD_3j1bEXTSA!2m2!1d-23.53539214684606!2d-46.65250091657845!3f12.403570383272722!4f-2.368072256153482!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/8JI9WgAopYw?rel=0&modestbranding=1&playsinline=1',
   },
   {
     id: 'operacao-prato',
@@ -71,6 +73,7 @@ export const CASES = [
     curiosity: 'Parte dos documentos foi liberada anos depois.',
     canVisit: '⚠️ Sim — cidade acessível.',
     images: ['/cases/operacao-prato/1.jpg'],
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/v-R8ieeCW3A?rel=0&modestbranding=1&playsinline=1',
   },
   {
     id: 'arco-teles',
@@ -86,6 +89,7 @@ export const CASES = [
     curiosity: 'A lenda envolve Bárbara dos Prazeres.',
     canVisit: '✅ Sim — área pública.',
     images: ['/cases/arco-teles/1.jpg'],
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/ah_x0UnzhVI?rel=0&modestbranding=1&playsinline=1',
   },
   {
     id: 'vilas-boas',
@@ -102,6 +106,7 @@ export const CASES = [
     canVisit: '⚠️ Parcial — área rural.',
     images: ['/cases/vilas-boas/1.jpg'],
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779746665602!6m8!1m7!1ssugux0nTpTlpvrV4cjevyQ!2m2!1d-19.86312909588833!2d-49.77400732938965!3f349.3794979163562!4f-5.561977990964721!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/sU0AGnX4aVE?rel=0&modestbranding=1&playsinline=1',
   },
   {
     id: 'opala-preto',
@@ -119,6 +124,7 @@ export const CASES = [
     images: ['/cases/opala-preto/1.jpg'],
     // Street View embed fornecido pelo usuário (Túnel Rebouças)
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779746411522!6m8!1m7!1s5RcsYD44V_1fJOAOKB7L2g!2m2!1d-22.94057653712002!2d-43.20239432470076!3f161.39943894047246!4f-31.383908536820528!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/zbHIoMmzOuk?rel=0&modestbranding=1&playsinline=1',
   },
   {
     id: 'loira-banheiro',
@@ -134,6 +140,7 @@ export const CASES = [
     curiosity: 'Muito popular entre estudantes.',
     canVisit: '⚠️ Sim — escolas comuns.',
     images: ['/cases/loira-banheiro/1.jpg'],
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/nGDmcyoTqfs?rel=0&modestbranding=1&playsinline=1',
   },
   {
     id: 'corpo-seco',
@@ -149,6 +156,7 @@ export const CASES = [
     curiosity: 'Dizem que se esconde em árvores.',
     canVisit: '❌ Não — sem local definido.',
     images: ['/cases/corpo-seco/1.jpg'],
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/MKuYfiqiQKo?rel=0&modestbranding=1&playsinline=1',
   },
   {
     id: 'inst-penal-candido',
@@ -165,6 +173,7 @@ export const CASES = [
     canVisit: '⚠️ Sim — ruínas abertas na trilha.',
     images: ['/cases/inst-penal-candido/1.jpg'],
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779746462932!6m8!1m7!1sA-t0mnBMNw7zyhcMlCulGQ!2m2!1d-23.18117155461505!2d-44.18879281694316!3f233.69156592377306!4f-6.45958488236613!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/q5hER19-fIw?rel=0&modestbranding=1&playsinline=1',
   },
   {
     id: 'sete-alem',
@@ -180,6 +189,7 @@ export const CASES = [
     curiosity: 'Não há provas concretas, apenas testemunhos.',
     canVisit: '❌ Não — localização desconhecida.',
     images: ['/cases/sete-alem/1.jpg'],
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/5Jqtc-Po-CE?rel=0&modestbranding=1&playsinline=1',
   },
   {
     id: 'igreja-nossa-senhora',
@@ -195,6 +205,7 @@ export const CASES = [
     curiosity: 'Missas eram realizadas escondidas durante a escravidão.',
     canVisit: '✅ Sim — ponto turístico.',
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779746572678!6m8!1m7!1sDmorgNGKZO5iUaAWyQTFhg!2m2!1d-12.97107930700565!2d-38.50825355223721!3f110.3008905851865!4f17.12098051393687!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/Abm41FwRoc8?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -212,6 +223,7 @@ export const CASES = [
     canVisit: '✅ Sim — visitação pública.',
     images: ['/cases/cemiterio-consolacao/1.jpg'],
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779746419476!6m8!1m7!1sPu_r9UVafqZQ63EgAIvfog!2m2!1d-23.55081431142936!2d-46.65652443226641!3f356.55486700592667!4f0!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/bubnZm8l6uA?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -230,6 +242,7 @@ export const CASES = [
     images: ['/cases/casa-da-morte-petropolis/1.jpg'],
     // Street View embed atualizado (HTTPS) fornecido pelo usuário
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779749422417!6m8!1m7!1s0Yf0yMJ5Zdf0ORzqj6PtoQ!2m2!1d-22.5083062484303!2d-43.163157191885!3f140.29236445513882!4f-5.820345016544735!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/6mtMXG-qnPk?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -247,6 +260,7 @@ export const CASES = [
     canVisit: '✅ Sim — bem tombado (visitação controlada).',
     images: ['/cases/chico-mendes/1.jpg'],
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779749917683!6m8!1m7!1sQmYkbmhIcO5i3TBArPqm3Q!2m2!1d-10.65142886906527!2d-68.50428883602082!3f167.99180737332662!4f-2.411360329924946!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/7_aVnVbI6q8?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -264,6 +278,7 @@ export const CASES = [
     canVisit: '⚠️ Limitado — local sensível e de memória traumática.',
     images: ['/cases/meninos-emaculados-altamira/1.jpg'],
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779750039709!6m8!1m7!1s3jfYtXgPnx8rPC5SX9F53g!2m2!1d-3.202877179085602!2d-52.20629853348685!3f61.35520156427039!4f-13.310658035112738!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/pWfObwvxGac?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -281,6 +296,7 @@ export const CASES = [
     canVisit: '✅ Sim — manifestações culturais e locais rurais.',
     images: ['/cases/matinta-perera/1.jpg'],
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779750228751!6m8!1m7!1s4w_w6MiC_eMki8plFRzk2A!2m2!1d-0.7167239796979213!2d-48.51336819638492!3f172.69192557025113!4f-4.806682428865173!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/4nBpzTQ3zWs?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -314,6 +330,7 @@ export const CASES = [
     canVisit: '✅ Sim — cidade turística.',
     images: ['/cases/trem-fantasma-paranapiacaba/1.jpg'],
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779749443094!6m8!1m7!1sWNEMjfA5Z6Pjn5xMBorlVA!2m2!1d-23.77874453632983!2d-46.30048673811505!3f266.1811607786882!4f-27.679359435658057!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/Xyj17jYL8Lc?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -331,6 +348,7 @@ export const CASES = [
     canVisit: '⚠️ Sim — área marítima.',
     images: ['/cases/naufragio-bateau-mouche/1.jpg'],
     streetViewEmbedUrl: 'https://www.google.com/maps/embed?pb=!4v1779749576809!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRHl2ZHJ1N0FF!2m2!1d-22.96319753086336!2d-43.16523137609917!3f181.39965595200874!4f-5.2262989427373014!5f0.7820865974627469',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/uxl1nXim7-4?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -347,6 +365,7 @@ export const CASES = [
     curiosity: 'O prédio era ocupado irregularmente por famílias.',
     canVisit: '❌ Não — demolido e área restrita.',
     images: ['/cases/edificio-wilton-paes/1.jpg'],
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/973fpIDc2z8?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -363,6 +382,7 @@ export const CASES = [
     curiosity: 'É um dos casos ufológicos mais famosos do mundo.',
     canVisit: '✅ Sim — cidade aberta ao turismo.',
     images: ['/cases/et-varginha/1.jpg'],
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/EalOhNXiSY8?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -379,6 +399,7 @@ export const CASES = [
     curiosity: 'É um dos maiores erros da imprensa brasileira.',
     canVisit: '⚠️ Limitado — área urbana comum.',
     images: ['/cases/escola-base/1.jpg'],
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/3pKoqDPIZeY?rel=0&modestbranding=1&playsinline=1',
   },
 
   {
@@ -395,6 +416,7 @@ export const CASES = [
     curiosity: 'Já foi usada como prisão e base militar.',
     canVisit: '❌ Não — área militar.',
     images: ['/cases/ilha-das-cobras/1.jpg'],
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/udfVA_xcstI?rel=0&modestbranding=1&playsinline=1',
   },
 
 ];

@@ -32,6 +32,7 @@ export default function CaseModal({ item, onClose }) {
   if (!item) return null;
   const categoryMeta = getCategoryMeta(item.category);
   const locationLabel = `${item.city}/${item.state}`;
+  const videoSrc = item.videoEmbedUrl || '';
 
   return (
     <>
@@ -59,51 +60,82 @@ export default function CaseModal({ item, onClose }) {
           </div>
 
           <div className="modal-content-block">
-            <div className="modal-meta-grid">
-              <div className="meta-item">
-                <span className="meta-label">Localização</span>
-                <span className="meta-value">{locationLabel}</span>
-              </div>
+            <div className="modal-body-grid">
+              <div className="modal-body-left">
+                <div className="modal-meta-grid">
+                  <div className="meta-item">
+                    <span className="meta-label">Localização</span>
+                    <span className="meta-value">{locationLabel}</span>
+                  </div>
 
-              <div className="meta-item">
-                <span className="meta-label">Período</span>
-                <span className="meta-value">{item.year}</span>
-              </div>
-            </div>
-
-            <section className="modal-section">
-              <h4>Dossiê</h4>
-              <p>{item.description}</p>
-            </section>
-
-            <section className="curiosity-box modal-section">
-              <h4>Curiosidade</h4>
-              <p>{item.curiosity}</p>
-            </section>
-
-            {item.canVisit && (
-              <section className="modal-visit-box modal-section">
-                <h4>Pode visitar?</h4>
-                <p>{item.canVisit}</p>
-              </section>
-            )}
-
-            {item.images?.length > 0 && (
-              <section className="modal-gallery modal-section">
-                <h4>Evidências Fotográficas</h4>
-                <div className="modal-gallery-scroll">
-                  {item.images.map((src, i) => (
-                    <img
-                      key={src}
-                      src={src}
-                      alt={`${item.title} — foto ${i + 1}`}
-                      className="modal-gallery-img"
-                      onClick={() => setLightboxIndex(i)}
-                    />
-                  ))}
+                  <div className="meta-item">
+                    <span className="meta-label">Período</span>
+                    <span className="meta-value">{item.year}</span>
+                  </div>
                 </div>
-              </section>
-            )}
+
+                <section className="modal-section">
+                  <h4>Dossiê</h4>
+                  <p>{item.description}</p>
+                </section>
+
+                <section className="curiosity-box modal-section">
+                  <h4>Curiosidade</h4>
+                  <p>{item.curiosity}</p>
+                </section>
+
+                {item.canVisit && (
+                  <section className="modal-visit-box modal-section">
+                    <h4>Pode visitar?</h4>
+                    <p>{item.canVisit}</p>
+                  </section>
+                )}
+
+                {item.images?.length > 0 && (
+                  <section className="modal-gallery modal-section">
+                    <h4>Evidências Fotográficas</h4>
+                    <div className="modal-gallery-scroll">
+                      {item.images.map((src, i) => (
+                        <img
+                          key={src}
+                          src={src}
+                          alt={`${item.title} — foto ${i + 1}`}
+                          className="modal-gallery-img"
+                          onClick={() => setLightboxIndex(i)}
+                        />
+                      ))}
+                    </div>
+                  </section>
+                )}
+              </div>
+
+              <aside className="modal-video-panel" aria-label="Vídeo do caso">
+                <div className="modal-video-header">
+                  <h4>Vídeo</h4>
+                  <p>Espaço para um vídeo, documentário ou reportagem sobre o caso.</p>
+                </div>
+
+                {videoSrc ? (
+                  <div className="modal-video-frame-wrap">
+                    <iframe
+                      className="modal-video-frame"
+                      src={videoSrc}
+                      title={`Vídeo — ${item.title}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  </div>
+                ) : (
+                  <div className="modal-video-placeholder">
+                    <span className="modal-video-placeholder-tag">Vídeo opcional</span>
+                    <p>
+                      Adicione <strong>videoEmbedUrl</strong> no caso para exibir um player aqui.
+                    </p>
+                  </div>
+                )}
+              </aside>
+            </div>
           </div>
         </article>
       </div>
