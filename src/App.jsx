@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import MapView from './components/MapView/MapView';
@@ -11,6 +11,22 @@ import SeoStructuredData from './components/SeoStructuredData/SeoStructuredData'
 import { CASES } from './data/cases';
 import { FILTERS } from './utils/categoryStyles';
 import './AppShell.css';
+
+const SOUND_SOURCES = {
+  ambient: '/sounds/ambiente.mp3',
+  music: '/sounds/musica.mpeg',
+  grito: null,
+};
+
+function createLoopingAudio(src) {
+  if (!src) return null;
+
+  const audio = new Audio(src);
+  audio.loop = true;
+  audio.preload = 'auto';
+  audio.crossOrigin = 'anonymous';
+  return audio;
+}
 
 function buildCategoryCounts(items) {
   return items.reduce(
@@ -31,8 +47,69 @@ export default function App() {
   const [showLanding, setShowLanding] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [isImmersive, setIsImmersive] = useState(false);
+  const [ambientVolume, setAmbientVolume] = useState(50);
+  const [musicVolume, setMusicVolume] = useState(60);
+  const [gritoVolume, setGritoVolume] = useState(80);
+  const [hasAudioStart, setHasAudioStart] = useState(false);
+  const audioRefs = useRef({
+    ambient: null,
+    music: null,
+    grito: null,
+  });
 
   const categoryCounts = useMemo(() => buildCategoryCounts(CASES), []);
+
+  useEffect(() => {
+    audioRefs.current.ambient = createLoopingAudio(SOUND_SOURCES.ambient);
+    audioRefs.current.music = createLoopingAudio(SOUND_SOURCES.music);
+    audioRefs.current.grito = createLoopingAudio(SOUND_SOURCES.grito);
+
+    const startAudio = () => {
+      setHasAudioStart(true);
+    };
+
+    window.addEventListener('pointerdown', startAudio, { once: true });
+    window.addEventListener('keydown', startAudio, { once: true });
+
+    return () => {
+      window.removeEventListener('pointerdown', startAudio);
+      window.removeEventListener('keydown', startAudio);
+
+      Object.values(audioRefs.current).forEach((audio) => {
+        if (!audio) return;
+        audio.pause();
+        audio.src = '';
+      });
+    };
+  }, []);
+
+  useEffect(() => {
+    const tracks = [
+      ['ambient', ambientVolume],
+      ['music', musicVolume],
+      ['grito', gritoVolume],
+    ];
+
+    tracks.forEach(([key, volume]) => {
+      const audio = audioRefs.current[key];
+      if (!audio) return;
+
+      audio.volume = Math.max(0, Math.min(1, volume / 100));
+      if (volume <= 0) {
+        audio.pause();
+        return;
+      }
+
+      if (!hasAudioStart) return;
+
+      const playPromise = audio.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {
+          // ignore autoplay block until the next user gesture
+        });
+      }
+    });
+  }, [ambientVolume, gritoVolume, hasAudioStart, musicVolume]);
 
   const visibleCases = useMemo(() => {
     if (activeFilter === 'todos') return CASES;
@@ -97,9 +174,9 @@ export default function App() {
           {/* Barra de controles de som (após os cards) */}
           <div className="sound-controls-container">
             <div className="sound-controls-inner">
-              <SoundControl type="music" label="Música" initialVolume={60} />
-              <SoundControl type="ambient" label="Ambiente" initialVolume={50} />
-              <SoundControl type="jumpscare" label="Jumpscare" initialVolume={80} />
+              <SoundControl type="music" label="Música" initialVolume={60} onVolumeChange={setMusicVolume} />
+              <SoundControl type="ambient" label="Ambiente" initialVolume={50} onVolumeChange={setAmbientVolume} />
+              <SoundControl type="grito" label="Grito" initialVolume={80} onVolumeChange={setGritoVolume} />
             </div>
           </div>
 
